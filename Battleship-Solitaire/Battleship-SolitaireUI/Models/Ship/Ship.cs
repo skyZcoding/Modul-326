@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Documents;
+using Battleship_SolitaireUI.Enums;
 
 namespace Battleship_SolitaireUI.Models.Ship
 {
     public class Ship : Model
     {
         private List<ShipPiece> shipPieces;
+        private ShipType shipType;
 
         public List<ShipPiece> ShipPieces
         {
@@ -20,5 +22,18 @@ namespace Battleship_SolitaireUI.Models.Ship
             }
         }
 
+
+        public ShipType ShipType
+        {
+            get
+            {
+                return shipType;
+            }
+            set
+            {
+                shipType = value;
+                OnPropertyChanged(nameof(ShipType));
+            }
+        }
     }
 }

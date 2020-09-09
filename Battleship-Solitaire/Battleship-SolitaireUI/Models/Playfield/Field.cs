@@ -35,5 +35,21 @@ namespace Battleship_SolitaireUI.Models.Playfield
                 OnPropertyChanged(nameof(YCoordinate));
             }
         }
+
+        private bool isClicked;
+
+        public bool IsClicked
+        {
+            get
+            {
+                return isClicked;
+            }
+            set
+            {
+                isClicked = value;
+                OnPropertyChanged(nameof(IsClicked));
+            }
+        }
+
     }
 }
