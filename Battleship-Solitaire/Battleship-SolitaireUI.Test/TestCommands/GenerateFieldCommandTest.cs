@@ -15,6 +15,7 @@ namespace Battleship_SolitaireUI.Test.TestCommands
         {
             List<Ship> ships = new List<Ship>();
             ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
+            ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
 
             new PlayfieldViewModel().GeneratePlayfieldCommand.Execute(ships);
         }

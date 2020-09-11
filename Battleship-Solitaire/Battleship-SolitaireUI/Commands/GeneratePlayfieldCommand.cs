@@ -56,12 +56,16 @@ namespace Battleship_SolitaireUI.Commands
             do
             {
                 ShipAlignment shipAlignment = (ShipAlignment)new Random()
-                                                                    .Next(0, 1);
+                                                                    .Next(0, 2);
 
-                int startCoordinateX = new Random().Next(fields.Min(f => f.XCoordinate), fields.Max(f => f.XCoordinate));
-                int startCoordinateY = new Random().Next(fields.Min(f => f.YCoordinate), fields.Max(f => f.YCoordinate));
+                int startCoordinateX = new Random().Next(fields.Min(f => f.XCoordinate), fields.Max(f => f.XCoordinate) + 1);
+                int startCoordinateY = new Random().Next(fields.Min(f => f.YCoordinate), fields.Max(f => f.YCoordinate) + 1);
 
-                for (int piece = 0; piece < (int)ship.ShipType || !placed; piece++)
+                placed = true;
+
+                ship.ShipPieces = new List<ShipPiece>();
+
+                for (int piece = 0; piece < (int)ship.ShipType && placed; piece++)
                 {
                     if (ShipAlignment.HORIZONTAL == shipAlignment)
                     {
@@ -69,7 +73,7 @@ namespace Battleship_SolitaireUI.Commands
                     }
                     else
                     {
-                        startCoordinateY++;
+                        startCoordinateX++;
                     }
 
                     placed = PlaceShipPiece(ship, fields, startCoordinateX, startCoordinateY);
@@ -79,7 +83,7 @@ namespace Battleship_SolitaireUI.Commands
                     }
                 }
 
-            } while (placed);
+            } while (!placed);
 
             Playfield playfield = Playfield.GetInstance();
             playfield.Ships.Add(ship);
@@ -91,8 +95,7 @@ namespace Battleship_SolitaireUI.Commands
 
             if (!playfield.Ships
                 .Any(s => !s.ShipPieces
-                            .Any(sp => sp.Field == fields
-                                                    .FirstOrDefault(f => f.XCoordinate == xCoordinate && f.YCoordinate == yCoordinate))))
+                            .Any(sp => sp.Field.XCoordinate == xCoordinate && sp.Field.YCoordinate == yCoordinate)))
             {
                 ship.ShipPieces.Add(new ShipPiece { Field = fields.FirstOrDefault(f => f.XCoordinate == xCoordinate && f.YCoordinate == yCoordinate) });
 
