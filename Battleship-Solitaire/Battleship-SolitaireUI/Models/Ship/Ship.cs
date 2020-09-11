@@ -9,6 +9,11 @@ namespace Battleship_SolitaireUI.Models.Ship
         private List<ShipPiece> shipPieces;
         private ShipType shipType;
 
+        public Ship()
+        {
+            ShipPieces = new List<ShipPiece>();
+        }
+
         public List<ShipPiece> ShipPieces
         {
             get

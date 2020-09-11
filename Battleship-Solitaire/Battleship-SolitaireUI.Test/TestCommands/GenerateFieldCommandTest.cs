@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Battleship_SolitaireUI.Models.Ship;
 using Battleship_SolitaireUI.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,7 +13,10 @@ namespace Battleship_SolitaireUI.Test.TestCommands
         [TestMethod]
         public void Execute()
         {
-            new PlayfieldViewModel().GeneratePlayfieldCommand.Execute(null);
+            List<Ship> ships = new List<Ship>();
+            ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
+
+            new PlayfieldViewModel().GeneratePlayfieldCommand.Execute(ships);
         }
     }
 }

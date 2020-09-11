@@ -19,6 +19,8 @@ namespace Battleship_SolitaireUI.Models.Playfield
                 if (instance == null)
                 {
                     instance = new Playfield();
+                    instance.Ships = new List<Ship.Ship>();
+                    instance.Fields = new List<Field>();
                 }
 
                 return instance;
