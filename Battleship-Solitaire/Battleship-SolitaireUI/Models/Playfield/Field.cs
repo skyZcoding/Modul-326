@@ -7,6 +7,8 @@ namespace Battleship_SolitaireUI.Models.Playfield
     public class Field : Model
     {
         private int xCoordinate;
+        private int yCoordinate;
+        private bool isClicked;
 
         public int XCoordinate
         {
@@ -21,8 +23,6 @@ namespace Battleship_SolitaireUI.Models.Playfield
             }
         }
 
-        private int yCoordinate;
-
         public int YCoordinate
         {
             get
@@ -35,8 +35,6 @@ namespace Battleship_SolitaireUI.Models.Playfield
                 OnPropertyChanged(nameof(YCoordinate));
             }
         }
-
-        private bool isClicked;
 
         public bool IsClicked
         {

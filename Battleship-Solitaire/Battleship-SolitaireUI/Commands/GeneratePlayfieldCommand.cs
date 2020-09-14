@@ -67,22 +67,24 @@ namespace Battleship_SolitaireUI.Commands
 
                 for (int piece = 0; piece < (int)ship.ShipType && placed; piece++)
                 {
-                    if (ShipAlignment.HORIZONTAL == shipAlignment)
-                    {
-                        startCoordinateY++;
-                    }
-                    else
-                    {
-                        startCoordinateX++;
-                    }
-
-                    placed = PlaceShipPiece(ship, fields, startCoordinateX, startCoordinateY);
                     if (!fields.Any(f => f.XCoordinate == startCoordinateX && f.YCoordinate == startCoordinateY))
                     {
                         placed = false;
                     }
-                }
+                    else
+                    {
+                        placed = PlaceShipPiece(ship, fields, startCoordinateX, startCoordinateY);
 
+                        if (ShipAlignment.HORIZONTAL == shipAlignment)
+                        {
+                            startCoordinateY++;
+                        }
+                        else
+                        {
+                            startCoordinateX++;
+                        }
+                    }
+                }
             } while (!placed);
 
             Playfield playfield = Playfield.GetInstance();
@@ -93,9 +95,7 @@ namespace Battleship_SolitaireUI.Commands
         {
             Playfield playfield = Playfield.GetInstance();
 
-            if (!playfield.Ships
-                .Any(s => !s.ShipPieces
-                            .Any(sp => sp.Field.XCoordinate == xCoordinate && sp.Field.YCoordinate == yCoordinate)))
+            if (playfield.Ships.All(s => !Enumerable.Any<ShipPiece>(s.ShipPieces, sp => sp.Field.XCoordinate == xCoordinate && sp.Field.YCoordinate == yCoordinate)))
             {
                 ship.ShipPieces.Add(new ShipPiece { Field = fields.FirstOrDefault(f => f.XCoordinate == xCoordinate && f.YCoordinate == yCoordinate) });
 
