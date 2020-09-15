@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Battleship_SolitaireUI.Models.Playfield
@@ -49,5 +50,12 @@ namespace Battleship_SolitaireUI.Models.Playfield
             }
         }
 
+        public bool HasShipPiece
+        {
+            get
+            {
+                return Playfield.GetInstance().Ships.Any(s => s.ShipPieces.Any(sp => sp.Field == this));
+            }
+        }
     }
 }
