@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Battleship_SolitaireUI.Models.Playfield;
+﻿using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Models.Option
 {

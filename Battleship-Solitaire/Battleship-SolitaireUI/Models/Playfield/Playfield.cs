@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Models.Playfield
 {
     public class Playfield : Model
     {
         private static Playfield instance;
-        private  static readonly object padlock = new object();
+        private static readonly object padlock = new object();
 
         private List<Ship.Ship> ships;
         private List<Field> fields;

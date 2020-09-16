@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Windows.Documents;
-using Battleship_SolitaireUI.Enums;
+﻿using Battleship_SolitaireUI.Enums;
+using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Models.Ship
 {

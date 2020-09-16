@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Battleship_SolitaireUI.Models.Option;
+﻿using Battleship_SolitaireUI.Models.Option;
 using Battleship_SolitaireUI.Models.Playfield;
 using Battleship_SolitaireUI.Models.Ship;
 using Battleship_SolitaireUI.ViewModels;
+using System;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Battleship_SolitaireUI
 {
@@ -71,7 +63,7 @@ namespace Battleship_SolitaireUI
             Playfield playfield = Playfield.GetInstance();
             Style buttonStyle = (Style)Resources["ButtonStyle"];
 
-            foreach (Field field  in playfield.Fields)
+            foreach (Field field in playfield.Fields)
             {
                 Button newButton = new Button
                 {
@@ -104,7 +96,7 @@ namespace Battleship_SolitaireUI
 
                 foreach (Ship ship in playfield.Ships)
                 {
-                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Where(sp => sp.Field.YCoordinate == row-1).Count();
+                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Where(sp => sp.Field.YCoordinate == row - 1).Count();
                 }
 
                 Label newLabel = new Label
@@ -124,7 +116,7 @@ namespace Battleship_SolitaireUI
 
                 foreach (Ship ship in playfield.Ships)
                 {
-                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Where(sp => sp.Field.XCoordinate == column -1).Count();
+                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Where(sp => sp.Field.XCoordinate == column - 1).Count();
                 }
 
                 Label newLabel = new Label
@@ -141,15 +133,15 @@ namespace Battleship_SolitaireUI
 
         private void Field_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = (Button) sender;
-            Field clickedField = (Field) clickedButton.Tag;
+            Button clickedButton = (Button)sender;
+            Field clickedField = (Field)clickedButton.Tag;
 
             Playfield.GetInstance().Fields.FirstOrDefault(f => f == clickedField).IsClicked = true;
         }
 
         private void UpdateColumnRow(ref int column, ref int row)
         {
-            if (column == option.Columns -1)
+            if (column == option.Columns - 1)
             {
                 column = 1;
                 row++;

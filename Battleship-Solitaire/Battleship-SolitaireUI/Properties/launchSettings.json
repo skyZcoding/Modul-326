@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Battleship-SolitaireUI": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

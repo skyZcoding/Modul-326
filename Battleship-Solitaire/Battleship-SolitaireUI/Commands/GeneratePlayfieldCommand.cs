@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using Battleship_SolitaireUI.Enums;
+﻿using Battleship_SolitaireUI.Enums;
 using Battleship_SolitaireUI.Models.Option;
 using Battleship_SolitaireUI.Models.Playfield;
 using Battleship_SolitaireUI.Models.Ship;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 
 namespace Battleship_SolitaireUI.Commands
 {
@@ -33,15 +32,15 @@ namespace Battleship_SolitaireUI.Commands
 
             List<Field> newFields = new List<Field>();
 
-            for (int row = 0; row < rows-1; row++)
+            for (int row = 0; row < rows - 1; row++)
             {
-                for (int column = 0; column < columns-1; column++)
+                for (int column = 0; column < columns - 1; column++)
                 {
                     newFields.Add(new Field
                     {
                         YCoordinate = row,
                         XCoordinate = column,
-                        IsClicked = false
+                        IsClicked = true
                     });
                 }
             }
@@ -97,17 +96,17 @@ namespace Battleship_SolitaireUI.Commands
             playfield.Ships.Add(ship);
         }
 
-        private bool IsAnyShipAround(Ship ship, int xCoordinate, int yCoordinate)
+        private bool IsAnyShipAround(int xCoordinate, int yCoordinate)
         {
             Playfield playfield = Playfield.GetInstance();
 
             return playfield.Ships
-                .Any(s => 
+                .Any(s =>
                     s.ShipPieces
-                        .Any(sp => xCoordinate-1 < sp.Field.XCoordinate
-                                                    && xCoordinate+1 > sp.Field.XCoordinate
-                                                    && yCoordinate-1 < sp.Field.YCoordinate
-                                                    && yCoordinate+1 > sp.Field.YCoordinate));
+                        .Any(sp => xCoordinate - 1 < sp.Field.XCoordinate
+                                                    && xCoordinate + 1 > sp.Field.XCoordinate
+                                                    && yCoordinate - 1 < sp.Field.YCoordinate
+                                                    && yCoordinate + 1 > sp.Field.YCoordinate));
         }
 
         private bool PlaceShipPiece(Ship ship, List<Field> fields, int xCoordinate, int yCoordinate)
@@ -115,11 +114,11 @@ namespace Battleship_SolitaireUI.Commands
             Playfield playfield = Playfield.GetInstance();
 
             if (playfield.Ships
-                            .All(s => 
+                            .All(s =>
                                 !Enumerable
-                                    .Any<ShipPiece>(s.ShipPieces, sp => 
-                                        sp.Field.XCoordinate == xCoordinate 
-                                            && sp.Field.YCoordinate == yCoordinate)) && !IsAnyShipAround(ship, xCoordinate, yCoordinate))
+                                    .Any<ShipPiece>(s.ShipPieces, sp =>
+                                        sp.Field.XCoordinate == xCoordinate
+                                            && sp.Field.YCoordinate == yCoordinate)) && !IsAnyShipAround(xCoordinate, yCoordinate))
             {
                 ship.ShipPieces.Add(new ShipPiece { Field = fields.FirstOrDefault(f => f.XCoordinate == xCoordinate && f.YCoordinate == yCoordinate) });
 
