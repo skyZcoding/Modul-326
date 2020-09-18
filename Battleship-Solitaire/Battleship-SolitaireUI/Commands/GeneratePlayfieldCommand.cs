@@ -40,7 +40,8 @@ namespace Battleship_SolitaireUI.Commands
                     {
                         YCoordinate = row,
                         XCoordinate = column,
-                        IsClicked = true
+                        IsRightClicked = false,
+                        IsLeftClicked = false
                     });
                 }
             }

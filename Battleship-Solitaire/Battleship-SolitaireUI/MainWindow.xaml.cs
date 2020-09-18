@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Input;
 
 namespace Battleship_SolitaireUI
 {
@@ -73,7 +74,7 @@ namespace Battleship_SolitaireUI
                     DataContext = field
                 };
 
-                newButton.Click += new RoutedEventHandler(Field_Click);
+                newButton.MouseDown += new MouseButtonEventHandler(Field_Click);
 
                 ButtonsGrid.Children.Add(newButton);
                 Grid.SetColumn(newButton, column);
@@ -131,12 +132,19 @@ namespace Battleship_SolitaireUI
             }
         }
 
-        private void Field_Click(object sender, RoutedEventArgs e)
+        private void Field_Click(object sender, MouseButtonEventArgs e)
         {
             Button clickedButton = (Button)sender;
             Field clickedField = (Field)clickedButton.Tag;
 
-            Playfield.GetInstance().Fields.FirstOrDefault(f => f == clickedField).IsClicked = true;
+            if (e.ChangedButton == MouseButton.Right)
+            {
+                Playfield.GetInstance().Fields.FirstOrDefault(f => f == clickedField).IsRightClicked = true;
+            }
+            else if (e.ChangedButton == MouseButton.Left)
+            {
+                Playfield.GetInstance().Fields.FirstOrDefault(f => f == clickedField).IsLeftClicked = true;
+            }
         }
 
         private void UpdateColumnRow(ref int column, ref int row)
