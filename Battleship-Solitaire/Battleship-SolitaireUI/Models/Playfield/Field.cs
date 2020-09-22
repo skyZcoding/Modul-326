@@ -6,7 +6,6 @@ namespace Battleship_SolitaireUI.Models.Playfield
     {
         private int xCoordinate;
         private int yCoordinate;
-        private bool isClicked;
         private bool isRightClicked;
         private bool isLeftClicked;
 
@@ -36,20 +35,6 @@ namespace Battleship_SolitaireUI.Models.Playfield
             }
         }
 
-        //remove this after implementation of is(right/left)clicked
-        public bool IsClicked
-        {
-            get
-            {
-                return isClicked;
-            }
-            set
-            {
-                isClicked = value;
-                OnPropertyChanged(nameof(IsClicked));
-            }
-        }
-
         public bool IsRightClicked
         {
             get
@@ -59,7 +44,6 @@ namespace Battleship_SolitaireUI.Models.Playfield
             set
             {
                 isRightClicked = value;
-                isLeftClicked = !value;
                 OnPropertyChanged(nameof(IsRightClicked));
             }
         }
@@ -72,7 +56,6 @@ namespace Battleship_SolitaireUI.Models.Playfield
             set
             {
                 isLeftClicked = value;
-                isRightClicked = !value;
                 OnPropertyChanged(nameof(IsLeftClicked));
             }
         }

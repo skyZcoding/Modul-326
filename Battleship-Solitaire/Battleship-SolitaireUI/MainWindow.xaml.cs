@@ -74,7 +74,7 @@ namespace Battleship_SolitaireUI
                     DataContext = field
                 };
 
-                newButton.MouseDown += new MouseButtonEventHandler(Field_Click);
+                newButton.PreviewMouseDown += new MouseButtonEventHandler(Field_Click);
 
                 ButtonsGrid.Children.Add(newButton);
                 Grid.SetColumn(newButton, column);
@@ -139,11 +139,13 @@ namespace Battleship_SolitaireUI
 
             if (e.ChangedButton == MouseButton.Right)
             {
-                Playfield.GetInstance().Fields.FirstOrDefault(f => f == clickedField).IsRightClicked = true;
+                clickedField.IsRightClicked = true;
+                clickedField.IsLeftClicked = false;
             }
             else if (e.ChangedButton == MouseButton.Left)
             {
-                Playfield.GetInstance().Fields.FirstOrDefault(f => f == clickedField).IsLeftClicked = true;
+                clickedField.IsRightClicked = false;
+                clickedField.IsLeftClicked = true;
             }
         }
 
@@ -165,7 +167,7 @@ namespace Battleship_SolitaireUI
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)ButtonsGrid.ActualWidth, (int)ButtonsGrid.ActualHeight, 96, 96, PixelFormats.Pbgra32);
             rtb.Render(ButtonsGrid);
 
-            using (FileStream stream = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/test.png", FileMode.Create))
+            using (FileStream stream = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/test.png", FileMode.Create))
             {
                 PngBitmapEncoder png = new PngBitmapEncoder();
                 png.Frames.Add(BitmapFrame.Create(rtb));
