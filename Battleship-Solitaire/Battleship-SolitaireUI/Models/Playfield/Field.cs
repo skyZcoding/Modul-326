@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Battleship_SolitaireUI.Models.Playfield
+﻿namespace Battleship_SolitaireUI.Models.Playfield
 {
     public class Field : Model
     {
+        private bool isClicked;
         private int xCoordinate;
         private int yCoordinate;
-        private bool isClicked;
 
         public int XCoordinate
         {
-            get
-            {
-                return xCoordinate;
-            }
+            get => xCoordinate;
             set
             {
                 xCoordinate = value;
@@ -25,10 +18,7 @@ namespace Battleship_SolitaireUI.Models.Playfield
 
         public int YCoordinate
         {
-            get
-            {
-                return yCoordinate;
-            }
+            get => yCoordinate;
             set
             {
                 yCoordinate = value;
@@ -38,16 +28,12 @@ namespace Battleship_SolitaireUI.Models.Playfield
 
         public bool IsClicked
         {
-            get
-            {
-                return isClicked;
-            }
+            get => isClicked;
             set
             {
                 isClicked = value;
                 OnPropertyChanged(nameof(IsClicked));
             }
         }
-
     }
 }

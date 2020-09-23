@@ -1,16 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Models.Playfield
 {
     public class Playfield : Model
     {
         private static Playfield instance;
-        private  static readonly object padlock = new object();
+        private static readonly object padlock = new object();
+        private List<Field> fields;
 
         private List<Ship.Ship> ships;
-        private List<Field> fields;
+
+        public List<Field> Fields
+        {
+            get => fields;
+            set
+            {
+                fields = value;
+                OnPropertyChanged(nameof(Fields));
+            }
+        }
+
+        public List<Ship.Ship> Ships
+        {
+            get => ships;
+            set
+            {
+                ships = value;
+                OnPropertyChanged(nameof(Ships));
+            }
+        }
 
         public static Playfield GetInstance()
         {
@@ -26,32 +44,5 @@ namespace Battleship_SolitaireUI.Models.Playfield
                 return instance;
             }
         }
-
-        public List<Field> Fields
-        {
-            get
-            {
-                return fields;
-            }
-            set
-            {
-                fields = value;
-                OnPropertyChanged(nameof(Fields));
-            }
-        }
-
-        public List<Ship.Ship> Ships
-        {
-            get
-            {
-                return ships;
-            }
-            set
-            {
-                ships = value;
-                OnPropertyChanged(nameof(Ships));
-            }
-        }
-
     }
 }

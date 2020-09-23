@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Battleship_SolitaireUI.Commands;
 
 namespace Battleship_SolitaireUI.ViewModels
@@ -14,18 +11,11 @@ namespace Battleship_SolitaireUI.ViewModels
         {
             get
             {
-                if (mGeneratePlayfield == null)
-                {
-                    mGeneratePlayfield = new GeneratePlayfieldCommand();
-                }
+                if (mGeneratePlayfield == null) mGeneratePlayfield = new GeneratePlayfieldCommand();
 
                 return mGeneratePlayfield;
             }
-            set
-            {
-                mGeneratePlayfield = value;
-            }
+            set => mGeneratePlayfield = value;
         }
-
     }
 }
