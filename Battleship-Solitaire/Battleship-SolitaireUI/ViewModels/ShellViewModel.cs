@@ -8,10 +8,12 @@ namespace Battleship_SolitaireUI.ViewModels
     public class ShellViewModel : Screen
     {
         private PlayfieldViewModel playfieldView;
+        private readonly IWindowManager _windowManager;
 
-        public ShellViewModel()
+        public ShellViewModel(IWindowManager windowManager)
         {
             playfieldView = new PlayfieldViewModel();
+            _windowManager = windowManager;
         }
 
         public PlayfieldViewModel PlayfieldView
@@ -24,8 +26,13 @@ namespace Battleship_SolitaireUI.ViewModels
             {
                 playfieldView = value;
                 NotifyOfPropertyChange(() => PlayfieldView);
+                Options();
             }
         }
 
+        private void Options()
+        {
+            _windowManager.ShowDialog(new OptionViewModel());
+        }
     }
 }
