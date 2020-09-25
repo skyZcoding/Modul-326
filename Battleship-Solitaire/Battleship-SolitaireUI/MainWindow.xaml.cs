@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Input;
+using System.CodeDom;
 
 namespace Battleship_SolitaireUI
 {
@@ -26,11 +27,11 @@ namespace Battleship_SolitaireUI
         {
             InitializeComponent();
             option = Option.GetInstance();
-            option.Ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
-            option.Ships.Add(new Ship { ShipType = Enums.ShipType.ThreePiece });
-            option.Ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
-            option.Ships.Add(new Ship { ShipType = Enums.ShipType.OnePiece });
-            option.Ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
+            //option.Ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
+            //option.Ships.Add(new Ship { ShipType = Enums.ShipType.ThreePiece });
+            //option.Ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
+            //option.Ships.Add(new Ship { ShipType = Enums.ShipType.OnePiece });
+            //option.Ships.Add(new Ship { ShipType = Enums.ShipType.TwoPiece });
             option.Ships.Add(new Ship { ShipType = Enums.ShipType.OnePiece });
 
             option.Columns = 10;
@@ -147,6 +148,50 @@ namespace Battleship_SolitaireUI
                 clickedField.IsRightClicked = false;
                 clickedField.IsLeftClicked = true;
             }
+
+            if (CheckForWin())
+            {
+                FinishGame();
+
+                MessageBox.Show("Won");
+            }
+        }
+
+        /// <summary>
+        /// Disables all the buttons when the game is finished
+        /// </summary>
+        private void FinishGame()
+        {
+            for (int i = 0; i < ButtonsGrid.Children.Count; i++)
+            {
+                if (ButtonsGrid.Children[i] is Button)
+                {
+                    Button button = (Button)ButtonsGrid.Children[i];
+                    button.IsEnabled = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Check if the game is finished after every button click
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckForWin()
+        {
+            Playfield playfield = Playfield.GetInstance();
+            bool win = true;
+
+            foreach (Field field in playfield.Fields)
+            {
+                if (!((field.IsLeftClicked && field.HasShipPiece)
+                    || (field.IsRightClicked && !field.HasShipPiece)))
+                {
+                    win = false;
+                    break;
+                }
+            }
+
+            return win;
         }
 
         private void UpdateColumnRow(ref int column, ref int row)

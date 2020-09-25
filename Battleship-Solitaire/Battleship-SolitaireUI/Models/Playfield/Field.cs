@@ -35,6 +35,9 @@ namespace Battleship_SolitaireUI.Models.Playfield
             }
         }
 
+        /// <summary>
+        /// Right click marks a waterfield
+        /// </summary>
         public bool IsRightClicked
         {
             get
@@ -47,6 +50,10 @@ namespace Battleship_SolitaireUI.Models.Playfield
                 OnPropertyChanged(nameof(IsRightClicked));
             }
         }
+
+        /// <summary>
+        /// Left click mars a ship field
+        /// </summary>
         public bool IsLeftClicked
         {
             get
