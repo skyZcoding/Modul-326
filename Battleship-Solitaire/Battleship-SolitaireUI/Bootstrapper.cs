@@ -9,7 +9,7 @@ namespace Battleship_SolitaireUI
 {
     public class Bootstrapper : BootstrapperBase
     {
-        private SimpleContainer container = new SimpleContainer();
+        private SimpleContainer _container = new SimpleContainer();
         public Bootstrapper()
         {
             Initialize();
@@ -17,8 +17,23 @@ namespace Battleship_SolitaireUI
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            container.Singleton<IWindowManager, WindowManager>();
             DisplayRootViewFor<ShellViewModel>();
+        }
+
+        protected override void Configure()
+        {
+            _container.Singleton<IWindowManager, WindowManager>();
+            _container.Singleton<ShellViewModel>();
+        }
+
+        protected override object GetInstance(Type service, string key)
+        {
+            return _container.GetInstance(service, key);
+        }
+
+        protected override IEnumerable<object> GetAllInstances(Type service)
+        {
+            return _container.GetAllInstances(service);
         }
     }
 }

@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800">
     <Grid Name="MainGrid">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Width="100" Height="40" 
+                    Margin="10" Name="SaveButton"
+                    >Save</Button>
+            <Button Width="100" Height="40" 
+                    Margin="10" Name="StartButton"
+                    >Start</Button>
+        </StackPanel>
+        <Button Width="50" Height="50" 
+                VerticalAlignment="Top" HorizontalAlignment="Right" 
+                Margin="10" Name="OptionsButton"
+                >Options</Button>
         <ContentControl x:Name="PlayfieldView"/>      
     </Grid>
 </Window>
