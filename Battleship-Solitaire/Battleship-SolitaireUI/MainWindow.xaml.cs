@@ -209,15 +209,49 @@ namespace Battleship_SolitaireUI
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)ButtonsGrid.ActualWidth, (int)ButtonsGrid.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            // TODO: if the playfield has not yet been generated, and save is clicked, it will just save an empty (white) canvas, fix this!
+            DrawingVisual drawingVisual = new DrawingVisual();
+            using (DrawingContext drawingContext = drawingVisual.RenderOpen())
+            {
+                SolidColorBrush colorBrush = new SolidColorBrush();
+                colorBrush.Color = Color.FromRgb(255, 255, 255);
+                drawingContext.DrawRectangle(colorBrush, null,
+                new Rect(new Point(), new Size((int)ButtonsGrid.ActualWidth + 10, (int)ButtonsGrid.ActualHeight + 10)));
+            }
+
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)ButtonsGrid.ActualWidth + 10, (int)ButtonsGrid.ActualHeight + 10, 96, 96, PixelFormats.Pbgra32);
+            rtb.Render(drawingVisual);
             rtb.Render(ButtonsGrid);
 
-            using (FileStream stream = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/test.png", FileMode.Create))
+            string name = "battleship-solitaire";
+            string extension = ".png";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\";
+            
+
+            // create directory if it doesn't yet exist
+            if (!Directory.Exists(path + name + "\\"))
+            {
+                Directory.CreateDirectory(path + name + "\\");
+            }
+
+            // change path to include the folder
+            path += name + "\\";
+
+            string filename = name + extension;
+
+            // check if file name is available
+            for (int iter = 1; File.Exists(path + filename); iter++)
+            {
+                filename = name + iter.ToString() + extension;
+            }
+
+            using (FileStream stream = new FileStream(path + filename, FileMode.Create))
             {
                 PngBitmapEncoder png = new PngBitmapEncoder();
                 png.Frames.Add(BitmapFrame.Create(rtb));
                 png.Save(stream);
             }
+            MessageBox.Show("Image saved to: " + path + filename);
         }
 
         private void OptionsButton_OnClick(object sender, RoutedEventArgs e)
