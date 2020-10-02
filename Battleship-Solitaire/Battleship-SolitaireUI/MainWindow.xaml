@@ -6,6 +6,45 @@
         xmlns:local="clr-namespace:Battleship_SolitaireUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=IsRightClicked}" Value="true"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Background" Value="Blue"/>
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=IsLeftClicked}" Value="true"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Background" Value="Black"/>
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+            </Style.Triggers>
+            </Style>
+    </Window.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Width="100" Height="40" 
+                    Margin="10" Name="SaveButton" 
+                    Click="SaveButton_OnClick">Save</Button>
+            <Button Width="100" Height="40" 
+                    Margin="10" Name="StartButton"
+                    Click="StartButton_OnClick">Start</Button>
+        </StackPanel>
+        <Button Width="50" Height="50" 
+                VerticalAlignment="Top" HorizontalAlignment="Right" 
+                Margin="10" Name="OptionsButton"
+                Click="OptionsButton_OnClick">Options</Button>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid Name="ButtonsGrid" MinWidth="400" MinHeight="400">
+                
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

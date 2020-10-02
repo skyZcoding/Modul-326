@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 
 namespace Battleship_SolitaireUI.Models.Playfield
 {
@@ -8,7 +6,8 @@ namespace Battleship_SolitaireUI.Models.Playfield
     {
         private int xCoordinate;
         private int yCoordinate;
-        private bool isClicked;
+        private bool isRightClicked;
+        private bool isLeftClicked;
 
         public int XCoordinate
         {
@@ -36,18 +35,37 @@ namespace Battleship_SolitaireUI.Models.Playfield
             }
         }
 
-        public bool IsClicked
+        public bool IsRightClicked
         {
             get
             {
-                return isClicked;
+                return isRightClicked;
             }
             set
             {
-                isClicked = value;
-                OnPropertyChanged(nameof(IsClicked));
+                isRightClicked = value;
+                OnPropertyChanged(nameof(IsRightClicked));
+            }
+        }
+        public bool IsLeftClicked
+        {
+            get
+            {
+                return isLeftClicked;
+            }
+            set
+            {
+                isLeftClicked = value;
+                OnPropertyChanged(nameof(IsLeftClicked));
             }
         }
 
+        public bool HasShipPiece
+        {
+            get
+            {
+                return Playfield.GetInstance().Ships.Any(s => s.ShipPieces.Any(sp => sp.Field == this));
+            }
+        }
     }
 }

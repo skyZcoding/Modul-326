@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Battleship_SolitaireUI.Commands;
 using System.Windows.Input;
-using Battleship_SolitaireUI.Commands;
 
 namespace Battleship_SolitaireUI.ViewModels
 {

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Battleship_SolitaireUI.Models.Ship;
+﻿using Battleship_SolitaireUI.Models.Ship;
 using Battleship_SolitaireUI.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Test.TestCommands
 {
