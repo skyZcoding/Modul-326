@@ -3,7 +3,7 @@ using Battleship_SolitaireUI.Commands;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
-    public class PlayfieldViewModel
+    public class PlayfieldViewModel  
     {
         private ICommand mGeneratePlayfield;
 
