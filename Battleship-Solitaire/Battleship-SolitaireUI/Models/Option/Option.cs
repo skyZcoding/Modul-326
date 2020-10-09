@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Battleship_SolitaireUI.Enums;
 
 namespace Battleship_SolitaireUI.Models.Option
 {
@@ -12,9 +13,11 @@ namespace Battleship_SolitaireUI.Models.Option
 
         public Option()
         {
-            foreach (var VARIABLE in Enum.GetValues())
+            Ships = new List<ShipOption>();
+
+            foreach (int value in Enum.GetValues(typeof(ShipType)))
             {
-                
+               Ships.Add(new ShipOption{ShipType = (ShipType)value}); 
             }
         }
 

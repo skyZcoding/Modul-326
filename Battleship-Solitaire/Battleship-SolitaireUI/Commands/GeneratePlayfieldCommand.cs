@@ -10,6 +10,13 @@ namespace Battleship_SolitaireUI.Commands
 {
     public class GeneratePlayfieldCommand : ICommand
     {
+        private readonly Playfield _playfield;
+
+        public GeneratePlayfieldCommand(Playfield playfield)
+        {
+            _playfield = playfield;
+        }
+
         public bool CanExecute(object parameter)
         {
             return true;
@@ -17,8 +24,6 @@ namespace Battleship_SolitaireUI.Commands
 
         public void Execute(object parameter)
         {
-            var playfield = Playfield.GetInstance();
-
             var ships = (List<Ship>) parameter;
 
             var rows = 3;
@@ -27,15 +32,19 @@ namespace Battleship_SolitaireUI.Commands
             var newFields = new List<Field>();
 
             for (var row = 0; row < rows; row++)
-            for (var column = 0; column < columns; column++)
-                newFields.Add(new Field
+            {
+                for (var column = 0; column < columns; column++)
                 {
-                    YCoordinate = row,
-                    XCoordinate = column,
-                    IsClicked = false
-                });
+                    newFields.Add(new Field
+                    {
+                        YCoordinate = row,
+                        XCoordinate = column,
+                        IsClicked = false
+                    });
+                }
+            }
 
-            playfield.Fields = newFields;
+            _playfield.Fields = newFields;
 
             foreach (var ship in ships) PlaceShip(ship, newFields);
         }
@@ -81,15 +90,13 @@ namespace Battleship_SolitaireUI.Commands
                     }
             } while (!placed);
 
-            var playfield = Playfield.GetInstance();
-            playfield.Ships.Add(ship);
+            _playfield.Ships.Add(ship);
         }
 
         private bool PlaceShipPiece(Ship ship, List<Field> fields, int xCoordinate, int yCoordinate)
         {
-            var playfield = Playfield.GetInstance();
 
-            if (playfield.Ships.All(s =>
+            if (_playfield.Ships.All(s =>
                 !s.ShipPieces.Any(sp => sp.Field.XCoordinate == xCoordinate && sp.Field.YCoordinate == yCoordinate)))
             {
                 ship.ShipPieces.Add(new ShipPiece

@@ -6,6 +6,15 @@
         xmlns:local="clr-namespace:Battleship_SolitaireUI.Views"
         mc:Ignorable="d"
         Title="OptionView" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate>
+            <DockPanel>
+                <Button>
+
+                </Button>
+            </DockPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -37,9 +46,9 @@
                   Grid.Column="1" x:Name="Option_Ships" MinHeight="350" MinWidth="500">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Shiptype" Width="70"></GridViewColumn>
-                    <GridViewColumn Header="Amount" Width="70"></GridViewColumn>
-                </GridView>
+                        <GridViewColumn Header="Shiptype" Width="70" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                        <GridViewColumn Header="Amount" Width="70" DisplayMemberBinding="{Binding Path=Amount}"></GridViewColumn>
+                    </GridView>
                 </ListView.View>
         </ListView>
     </Grid>

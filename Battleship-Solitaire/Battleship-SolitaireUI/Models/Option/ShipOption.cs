@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Battleship_SolitaireUI.Enums;
+using Battleship_SolitaireUI.Extensions;
 
 namespace Battleship_SolitaireUI.Models.Option
 {
@@ -27,7 +28,7 @@ namespace Battleship_SolitaireUI.Models.Option
         {
             get
             {
-                return Enum.GetName(, ShipType);
+                return EnumHelper.GetDescriptionOfEnumValue(ShipType);
             }
         }
 
