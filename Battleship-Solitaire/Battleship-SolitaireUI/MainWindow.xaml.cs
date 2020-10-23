@@ -209,7 +209,6 @@ namespace Battleship_SolitaireUI
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            // TODO: if the playfield has not yet been generated, and save is clicked, it will just save an empty (white) canvas, fix this!
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext drawingContext = drawingVisual.RenderOpen())
             {
@@ -274,6 +273,7 @@ namespace Battleship_SolitaireUI
             InitialiseGrid();
             InitialiseButtons();
             InitialiseLabels();
+            SaveButton.IsEnabled = true;
         }
     }
 }

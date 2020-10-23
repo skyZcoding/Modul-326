@@ -31,7 +31,7 @@
     <Grid Name="MainGrid">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
             <Button Width="100" Height="40" 
-                    Margin="10" Name="SaveButton" 
+                    Margin="10" IsEnabled="False" Name="SaveButton"
                     Click="SaveButton_OnClick">Save</Button>
             <Button Width="100" Height="40" 
                     Margin="10" Name="StartButton"
