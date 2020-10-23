@@ -15,7 +15,7 @@ namespace Battleship_SolitaireUI.Views
     /// <summary>
     /// Interaction logic for OptionView.xaml
     /// </summary>
-    public partial class OptionView : Window
+    public partial class OptionView
     {
         public OptionView()
         {
