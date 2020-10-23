@@ -1,10 +1,21 @@
 ﻿<UserControl x:Class="Battleship_SolitaireUI.Views.PlayfieldView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Battleship_SolitaireUI.Views"
-             mc:Ignorable="d" 
+             xmlns:extensions="clr-namespace:Battleship_SolitaireUI.Extensions"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <ContentControl x:Name="ContentControl"></ContentControl>
+    <UserControl.Resources>
+        <DataTemplate x:Key="FieldTemplate">
+            <Button Grid.Row="{Binding Path=YCoordinate}" Grid.Column="{Binding Path=XCoordinate}" Tag="{Binding Path=this}">
+
+            </Button>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid extensions:GridHelpers.RowCount="{Binding Path=Rows}"
+          extensions:GridHelpers.ColumnCount="{Binding Path=Columns}">
+        <ItemsControl x:Name="Playfield_Fields" ItemTemplate="{StaticResource ResourceKey=FieldTemplate}"/>
+    </Grid>
 </UserControl>
