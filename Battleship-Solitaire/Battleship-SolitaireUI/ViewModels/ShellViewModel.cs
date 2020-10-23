@@ -31,9 +31,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
-        public bool CanOpenOptions()
+        public void StartGame()
         {
-            return true;
+            PlayfieldView.Refresh();
         }
 
         public void OpenOptions()

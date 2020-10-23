@@ -9,13 +9,34 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate x:Key="FieldTemplate">
-            <Button Grid.Row="{Binding Path=YCoordinate}" Grid.Column="{Binding Path=XCoordinate}" Tag="{Binding Path=this}">
-
+            <Button Grid.Row="{Binding Path=YCoordinate}" Grid.Column="{Binding Path=XCoordinate}">
+                <!--<Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=IsRightClicked}" Value="true"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter Property="Background" Value="Blue"/>
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=IsLeftClicked}" Value="true"></Condition>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter Property="Background" Value="Black"/>
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>-->
             </Button>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid extensions:GridHelpers.RowCount="{Binding Path=Rows}"
-          extensions:GridHelpers.ColumnCount="{Binding Path=Columns}">
+    <Grid extensions:GridHelpers.RowCount="{Binding Path=Option_Rows}"
+          extensions:GridHelpers.ColumnCount="{Binding Path=Option_Columns}">
         <ItemsControl x:Name="Playfield_Fields" ItemTemplate="{StaticResource ResourceKey=FieldTemplate}"/>
     </Grid>
 </UserControl>
