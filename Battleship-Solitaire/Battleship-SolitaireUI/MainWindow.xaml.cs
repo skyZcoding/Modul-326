@@ -11,13 +11,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Input;
 using System.CodeDom;
+using MahApps.Metro.Controls;
+using ControlzEx.Theming;
 
 namespace Battleship_SolitaireUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private const int rows = 8;
         private const int columns = 10;
@@ -36,6 +38,9 @@ namespace Battleship_SolitaireUI
 
             option.Columns = 10;
             option.Rows = 8;
+
+            //Change Window Theme to Dark and cyan coloured Titlebar
+            ThemeManager.Current.ChangeTheme(this, "Dark.Cyan");
         }
 
         private void InitialiseModels()
