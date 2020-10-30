@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using Battleship_SolitaireUI.Commands;
+using Battleship_SolitaireUI.Models.Option;
+using Battleship_SolitaireUI.Models.Playfield;
 using Battleship_SolitaireUI.ViewModels;
 using Caliburn.Micro;
 
@@ -23,7 +26,17 @@ namespace Battleship_SolitaireUI
         protected override void Configure()
         {
             _container.Singleton<IWindowManager, WindowManager>();
+
+            // Initialize ViewModels
             _container.Singleton<ShellViewModel>();
+            _container.Singleton<PlayfieldViewModel>();
+            _container.Singleton<OptionViewModel>();
+
+            // Initialize Models
+            _container.Singleton<Option>();
+            _container.Singleton<Playfield>();
+
+            _container.PerRequest<GeneratePlayfieldCommand>();
         }
 
         protected override object GetInstance(Type service, string key)

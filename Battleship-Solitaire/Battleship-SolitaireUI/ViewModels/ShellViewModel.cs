@@ -1,38 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Battleship_SolitaireUI.Commands;
 using Caliburn.Micro;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
     public class ShellViewModel : Screen
     {
-        private PlayfieldViewModel playfieldView;
+        private ICommand mGeneratePlayfield;
+        private PlayfieldViewModel _playfieldView;
+        private readonly OptionViewModel _optionViewModel;
         private readonly IWindowManager _windowManager;
 
-        public ShellViewModel(IWindowManager windowManager)
+        public ShellViewModel(IWindowManager windowManager, PlayfieldViewModel playfieldViewModel, OptionViewModel optionViewModel, GeneratePlayfieldCommand generatePlayfieldCommand)
         {
-            playfieldView = new PlayfieldViewModel();
+            _playfieldView = playfieldViewModel;
+            _optionViewModel = optionViewModel;
             _windowManager = windowManager;
+            mGeneratePlayfield = generatePlayfieldCommand;
         }
 
         public PlayfieldViewModel PlayfieldView
         {
             get
             {
-                return playfieldView;
+                return _playfieldView;
             }
             set
             {
-                playfieldView = value;
+                _playfieldView = value;
                 NotifyOfPropertyChange(() => PlayfieldView);
-                Options();
             }
         }
-
-        private void Options()
+        public ICommand GeneratePlayfieldCommand
         {
-            _windowManager.ShowDialog(new OptionViewModel());
+            get
+            {
+                return mGeneratePlayfield;
+            }
+            set => mGeneratePlayfield = value;
+        }
+
+        public void StartGame()
+        {
+            PlayfieldView.Refresh();
+            mGeneratePlayfield.Execute(null);
+            PlayfieldView.Refresh();
+        }
+
+        public void OpenOptions()
+        {
+            _windowManager.ShowDialog(_optionViewModel);
         }
     }
 }

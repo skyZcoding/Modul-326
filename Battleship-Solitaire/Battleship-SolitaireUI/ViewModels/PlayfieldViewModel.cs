@@ -1,21 +1,38 @@
-﻿using System.Windows.Input;
+﻿using System.Windows.Controls;
+using System.Windows.Input;
 using Battleship_SolitaireUI.Commands;
+using Battleship_SolitaireUI.Models.Option;
+using Battleship_SolitaireUI.Models.Playfield;
+using Caliburn.Micro;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
-    public class PlayfieldViewModel
+    public class PlayfieldViewModel : Screen
     {
-        private ICommand mGeneratePlayfield;
+        private readonly Playfield _playfield;
+        private readonly Option _option;
 
-        public ICommand GeneratePlayfieldCommand
+        public PlayfieldViewModel(Playfield playfield, Option option)
+        {
+            _playfield = playfield;
+            _option = option;
+        }
+
+        public Playfield Playfield
         {
             get
             {
-                if (mGeneratePlayfield == null) mGeneratePlayfield = new GeneratePlayfieldCommand();
-
-                return mGeneratePlayfield;
+                return _playfield;
             }
-            set => mGeneratePlayfield = value;
         }
+
+        public Option Option
+        {
+            get
+            {
+                return _option;
+            }
+        }
+
     }
 }

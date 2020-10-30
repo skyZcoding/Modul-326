@@ -9,18 +9,28 @@
         Title="ShellView" Height="450" Width="800"
         ShowTitleBar="True">
     <Grid Name="MainGrid">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button Width="100" Height="40" 
-                    Margin="10" Name="SaveButton"
-                    >Save</Button>
-            <Button Width="100" Height="40" 
-                    Margin="10" Name="StartButton"
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1">
+            <Button Width="100" Height="40"
+                    Margin="10"
+                    x:Name="Save">Save</Button>
+            <Button Width="100" Height="40"
+                    Margin="10" x:Name="StartGame"
                     >Start</Button>
         </StackPanel>
-        <Button Width="50" Height="50" 
-                VerticalAlignment="Top" HorizontalAlignment="Right" 
-                Margin="10" Name="OptionsButton"
+        <Button Width="50" Height="50"
+                VerticalAlignment="Top" HorizontalAlignment="Right"
+                Margin="10" x:Name="OpenOptions"
+                Grid.Column="1"
                 >Options</Button>
-        <ContentControl x:Name="PlayfieldView"/>      
+        <ContentControl x:Name="PlayfieldView"></ContentControl>
     </Grid>
 </mah:MetroWindow>
