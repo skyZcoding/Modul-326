@@ -37,12 +37,19 @@
         <ListView Margin="5" 
                   VerticalAlignment="Center" HorizontalAlignment="Center"
                   Grid.Column="1" x:Name="Option_Ships" MinHeight="350" MinWidth="500">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Shiptype" Width="70" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
-                        <GridViewColumn Header="Amount" Width="70" DisplayMemberBinding="{Binding Path=Amount}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Shiptype" Width="70" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                    <GridViewColumn Header="Amount">
+                        <GridViewColumn.CellTemplate >
+                            <DataTemplate>
+                                <TextBox x:Name="Amount" Width="100"  Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+
+            </ListView.View>
         </ListView>
     </Grid>
 </mah:MetroWindow>
