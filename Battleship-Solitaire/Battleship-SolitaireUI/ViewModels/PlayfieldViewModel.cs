@@ -9,8 +9,6 @@ namespace Battleship_SolitaireUI.ViewModels
 {
     public class PlayfieldViewModel : Screen
     {
-        private ICommand mGeneratePlayfield;
-        private ContentControl contentControl;
         private readonly Playfield _playfield;
         private readonly Option _option;
 
@@ -34,17 +32,6 @@ namespace Battleship_SolitaireUI.ViewModels
             {
                 return _option;
             }
-        }
-
-        public ICommand GeneratePlayfieldCommand
-        {
-            get
-            {
-                if (mGeneratePlayfield == null) mGeneratePlayfield = new GeneratePlayfieldCommand(_playfield);
-
-                return mGeneratePlayfield;
-            }
-            set => mGeneratePlayfield = value;
         }
 
     }

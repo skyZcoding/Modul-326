@@ -2,7 +2,8 @@
 {
     public class Field : Model
     {
-        private bool isClicked;
+        private bool isRightClicked;
+        private bool isLeftClicked;
         private int xCoordinate;
         private int yCoordinate;
 
@@ -26,13 +27,23 @@
             }
         }
 
-        public bool IsClicked
+        public bool IsRightClicked
         {
-            get => isClicked;
+            get => isRightClicked;
             set
             {
-                isClicked = value;
-                OnPropertyChanged(nameof(IsClicked));
+                isRightClicked = value;
+                OnPropertyChanged(nameof(IsRightClicked));
+            }
+        }
+
+        public bool IsLeftClicked
+        {
+            get => isLeftClicked;
+            set
+            {
+                isLeftClicked = value;
+                OnPropertyChanged(nameof(IsLeftClicked));
             }
         }
     }

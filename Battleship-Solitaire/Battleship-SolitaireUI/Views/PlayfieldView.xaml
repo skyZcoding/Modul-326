@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate x:Key="FieldTemplate">
-            <Button Grid.Row="{Binding Path=YCoordinate}" Grid.Column="{Binding Path=XCoordinate}">
+            <Button Grid.Row="{Binding Path=YCoordinate}" Grid.Column="{Binding Path=XCoordinate}" Width="30" Height="30 ">
                 <!--<Button.Style>
                     <Style>
                         <Style.Triggers>
@@ -35,8 +35,9 @@
             </Button>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid extensions:GridHelpers.RowCount="{Binding Path=Option_Rows}"
-          extensions:GridHelpers.ColumnCount="{Binding Path=Option_Columns}">
+    <Grid extensions:GridHelpers.RowCount="{Binding Path=Option.Rows}"
+          extensions:GridHelpers.ColumnCount="{Binding Path=Option.Columns}"
+          Name="FieldGrid">
         <ItemsControl x:Name="Playfield_Fields" ItemTemplate="{StaticResource ResourceKey=FieldTemplate}"/>
     </Grid>
 </UserControl>
