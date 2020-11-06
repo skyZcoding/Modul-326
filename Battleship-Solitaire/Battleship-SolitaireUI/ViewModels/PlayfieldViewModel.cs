@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Battleship_SolitaireUI.Commands;
 using Battleship_SolitaireUI.Models.Option;
@@ -16,6 +17,21 @@ namespace Battleship_SolitaireUI.ViewModels
         {
             _playfield = playfield;
             _option = option;
+        }
+
+        public List<FieldViewModel> Fields
+        {
+            get
+            {
+                List<FieldViewModel> fields = new List<FieldViewModel>();
+
+                for (int row = 0; row < _option.Rows; row++)
+                {
+                    fields.Add(new FieldViewModel(row, _playfield));
+                }
+
+                return fields;
+            }
         }
 
         public Playfield Playfield
