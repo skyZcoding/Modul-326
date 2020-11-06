@@ -38,9 +38,9 @@ namespace Battleship_SolitaireUI.Commands
 
             List<Field> newFields = new List<Field>();
 
-            for (int row = 0; row < rows - 1; row++)
+            for (int row = 0; row < rows; row++)
             {
-                for (int column = 0; column < columns - 1; column++)
+                for (int column = 0; column < columns; column++)
                 {
                     newFields.Add(new Field
                     {
