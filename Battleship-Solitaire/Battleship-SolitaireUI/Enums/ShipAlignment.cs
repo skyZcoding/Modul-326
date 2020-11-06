@@ -2,7 +2,7 @@
 {
     public enum ShipAlignment
     {
-        VERTICAL = 0,
-        HORIZONTAL = 1
+        Vertical = 0,
+        Hoizontal = 1
     }
 }
