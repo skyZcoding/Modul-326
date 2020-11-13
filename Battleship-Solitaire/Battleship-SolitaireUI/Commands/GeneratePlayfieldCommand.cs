@@ -46,8 +46,7 @@ namespace Battleship_SolitaireUI.Commands
                     {
                         YCoordinate = row,
                         XCoordinate = column,
-                        IsRightClicked = false,
-                        IsLeftClicked = false
+                        Status = FieldStatus.Unassigned
                     });
                 }
             }
