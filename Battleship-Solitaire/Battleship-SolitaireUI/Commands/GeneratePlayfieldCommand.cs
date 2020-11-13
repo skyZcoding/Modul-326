@@ -46,8 +46,7 @@ namespace Battleship_SolitaireUI.Commands
                     {
                         YCoordinate = row,
                         XCoordinate = column,
-                        IsRightClicked = false,
-                        IsLeftClicked = false
+                        Status = FieldStatus.Unassigned
                     });
                 }
             }
@@ -87,7 +86,7 @@ namespace Battleship_SolitaireUI.Commands
                     {
                         placed = PlaceShipPiece(ship, fields, startCoordinateX, startCoordinateY);
 
-                        if (ShipAlignment.HORIZONTAL == shipAlignment)
+                        if (ShipAlignment.Vertical == shipAlignment)
                         {
                             startCoordinateY++;
                         }
@@ -108,9 +107,9 @@ namespace Battleship_SolitaireUI.Commands
                 .Any(s =>
                     s.ShipPieces
                         .Any(sp => xCoordinate - 1 < sp.Field.XCoordinate
-                                                    && xCoordinate + 1 > sp.Field.XCoordinate
-                                                    && yCoordinate - 1 < sp.Field.YCoordinate
-                                                    && yCoordinate + 1 > sp.Field.YCoordinate));
+                            && xCoordinate + 1 > sp.Field.XCoordinate
+                            && yCoordinate - 1 < sp.Field.YCoordinate
+                            && yCoordinate + 1 > sp.Field.YCoordinate));
         }
 
         private bool PlaceShipPiece(Ship ship, List<Field> fields, int xCoordinate, int yCoordinate)

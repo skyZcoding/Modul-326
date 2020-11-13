@@ -1,4 +1,6 @@
-﻿namespace Battleship_SolitaireUI.Models.Playfield
+﻿using Battleship_SolitaireUI.Enums;
+
+namespace Battleship_SolitaireUI.Models.Playfield
 {
     public class Field : Model
     {
@@ -6,6 +8,7 @@
         private bool isLeftClicked;
         private int xCoordinate;
         private int yCoordinate;
+        private FieldStatus status;
 
         public int XCoordinate
         {
@@ -27,24 +30,18 @@
             }
         }
 
-        public bool IsRightClicked
+        public FieldStatus Status
         {
-            get => isRightClicked;
+            get
+            {
+                return status;
+            }
             set
             {
-                isRightClicked = value;
-                OnPropertyChanged(nameof(IsRightClicked));
+                status = value;
+                OnPropertyChanged(nameof(Status));
             }
         }
 
-        public bool IsLeftClicked
-        {
-            get => isLeftClicked;
-            set
-            {
-                isLeftClicked = value;
-                OnPropertyChanged(nameof(IsLeftClicked));
-            }
-        }
     }
 }
