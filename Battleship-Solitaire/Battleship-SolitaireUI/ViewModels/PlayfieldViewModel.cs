@@ -68,6 +68,7 @@ namespace Battleship_SolitaireUI.ViewModels
             }
 
             _playfield.Finished = CheckForWin();
+
         }
 
         private bool CheckForWin()

@@ -32,7 +32,11 @@
                 Grid.Column="1"
                 >Options</Button>
 
-        <Label Content="Win" Foreground="Green">
+        <Label Content="You Won!" Foreground="Green"
+               Grid.Column="1" VerticalAlignment="Bottom" 
+               HorizontalContentAlignment="Center"
+               FontSize="20" FontWeight="Bold"
+               >
             <Label.Style>
                 <Style TargetType="Label">
                     <Style.Triggers>
