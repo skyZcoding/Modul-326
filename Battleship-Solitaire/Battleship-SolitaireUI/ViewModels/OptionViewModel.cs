@@ -9,7 +9,7 @@ namespace Battleship_SolitaireUI.ViewModels
 {
     public class OptionViewModel : Screen
     {
-        private Option _option;
+        private Option _option = new Option();
 
         public OptionViewModel(Option option)
         {
