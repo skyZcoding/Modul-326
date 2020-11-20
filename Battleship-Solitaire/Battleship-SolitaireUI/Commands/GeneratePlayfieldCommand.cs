@@ -42,7 +42,7 @@ namespace Battleship_SolitaireUI.Commands
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    newFields.Add(new Field
+                    newFields.Add(new Field(_playfield)
                     {
                         YCoordinate = row,
                         XCoordinate = column,
@@ -53,9 +53,12 @@ namespace Battleship_SolitaireUI.Commands
 
             _playfield.Fields = newFields;
 
-            foreach (ShipOption ship in ships)
+            foreach (ShipOption ship in ships.Where(s => s.Amount >= 1))
             {
-                PlaceShip(new Ship { ShipType = ship.ShipType}, newFields);
+                for (int i = 0; i < ship.Amount; i++)
+                {
+                    PlaceShip(new Ship { ShipType = ship.ShipType }, newFields);
+                }
             }
         }
 

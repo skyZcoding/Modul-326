@@ -10,10 +10,34 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <DataTemplate x:Key="FieldTemplate">
-            <Button  Width="30" Height="30" Content="{Binding Path=YCoordinate}">
-            </Button>
-        </DataTemplate>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Flat}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=Status}" Value="0"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Background" Value="Black"/>
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=Status}" Value="1"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Background" Value="Blue"/>
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=Status}" Value="2"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Background" Value="Gray"/>
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
         <DataTemplate x:Key="FieldRow">
             <StackPanel Orientation="Horizontal">
                 <ItemsControl ItemsSource="{Binding Path=Fields}">
@@ -24,7 +48,11 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Width="30" Height="30" Content="{Binding Path=YCoordinate}" Margin="5" cal:Message.Attach="UpdateStatus($dataContext)">
+                            <Button Width="30" Height="30"
+                                    Margin="5" cal:Message.Attach="UpdateStatus($dataContext)"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Foreground="White">
+                                
                             </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

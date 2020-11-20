@@ -6,6 +6,7 @@ namespace Battleship_SolitaireUI.Models.Playfield
     {
         private List<Field> fields;
         private List<Ship.Ship> ships;
+        private bool finished;
 
         public Playfield()
         {
@@ -32,5 +33,20 @@ namespace Battleship_SolitaireUI.Models.Playfield
                 OnPropertyChanged(nameof(Ships));
             }
         }
+
+
+        public bool Finished
+        {
+            get
+            { 
+                return finished; 
+            }
+            set
+            { 
+                finished = value;
+                OnPropertyChanged(nameof(Finished));
+            }
+        }
+
     }
 }

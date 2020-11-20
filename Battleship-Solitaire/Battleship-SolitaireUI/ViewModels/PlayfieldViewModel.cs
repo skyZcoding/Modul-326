@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Battleship_SolitaireUI.Commands;
@@ -54,18 +56,36 @@ namespace Battleship_SolitaireUI.ViewModels
 
         public void UpdateStatus(Field field)
         {
-            FieldStatus newStatus;
+            int newFieldId = (int)field.Status + 1;
 
-            try
+            if (newFieldId <= (int)Enum.GetValues(typeof(FieldStatus)).Cast<FieldStatus>().Max())
             {
-                newStatus = (FieldStatus)field.Status++;
+                field.Status = (FieldStatus)(newFieldId);
             }
-            catch (System.Exception)
+            else
             {
-                newStatus = (FieldStatus)0;
+                field.Status = (FieldStatus)0;
             }
 
-            field.Status = newStatus;
+            _playfield.Finished = CheckForWin();
+        }
+
+        private bool CheckForWin()
+        {
+ 
+            bool win = true;
+
+            foreach (Field field in _playfield.Fields)
+            {
+                if (!((field.Status == FieldStatus.Ship && field.HasShipPiece)
+                    || (field.Status != FieldStatus.Ship && !field.HasShipPiece)))
+                {
+                    win = false;
+                    break;
+                }
+            }
+
+            return win;
         }
     }
 }

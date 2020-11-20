@@ -31,6 +31,21 @@
                 Margin="10" x:Name="OpenOptions"
                 Grid.Column="1"
                 >Options</Button>
+
+        <Label Content="Win" Foreground="Green">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Playfield.Finished}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Playfield.Finished}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
         <ContentControl x:Name="PlayfieldView"></ContentControl>
     </Grid>
 </mah:MetroWindow>
