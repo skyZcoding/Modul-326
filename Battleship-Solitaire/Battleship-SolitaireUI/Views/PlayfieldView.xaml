@@ -52,7 +52,6 @@
                                     Margin="5" cal:Message.Attach="UpdateStatus($dataContext)"
                                     Style="{StaticResource ButtonStyle}"
                                     Foreground="White">
-                                
                             </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
