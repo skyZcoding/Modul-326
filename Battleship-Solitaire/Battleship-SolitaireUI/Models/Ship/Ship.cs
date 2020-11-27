@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Documents;
 using Battleship_SolitaireUI.Enums;
 
 namespace Battleship_SolitaireUI.Models.Ship
@@ -16,10 +15,7 @@ namespace Battleship_SolitaireUI.Models.Ship
 
         public List<ShipPiece> ShipPieces
         {
-            get
-            {
-                return shipPieces;
-            }
+            get => shipPieces;
             set
             {
                 shipPieces = value;
@@ -30,10 +26,7 @@ namespace Battleship_SolitaireUI.Models.Ship
 
         public ShipType ShipType
         {
-            get
-            {
-                return shipType;
-            }
+            get => shipType;
             set
             {
                 shipType = value;
