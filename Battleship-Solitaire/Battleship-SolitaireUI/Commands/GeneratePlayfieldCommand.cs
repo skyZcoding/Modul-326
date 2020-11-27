@@ -68,8 +68,8 @@ namespace Battleship_SolitaireUI.Commands
             Random rnd = new Random();
 
             // counts amount of fields that have been made visible
-            int fieldCounter = 0;
-            while (fieldCounter > fieldCount)
+            int changedFields = 0;
+            while (changedFields < fieldCount)
             {
                 // gen y coordinate
                 int yCoord = rnd.Next(1, _option.Columns + 1);
@@ -78,7 +78,7 @@ namespace Battleship_SolitaireUI.Commands
 
                 Field randomField = _playfield.Fields.First(f => f.XCoordinate == xCoord && f.YCoordinate == yCoord);
 
-                if (randomField.Status != FieldStatus.Unassigned)
+                if (randomField.Status == FieldStatus.Unassigned)
                 {
                     if (randomField.HasShipPiece)
                     {
@@ -89,7 +89,7 @@ namespace Battleship_SolitaireUI.Commands
                         randomField.Status = FieldStatus.Water;
                     }
 
-                    fieldCounter++;
+                    changedFields++;
                 }
                 // else -> field has already been assigned, therefore, it is not interesting to us.
             }
