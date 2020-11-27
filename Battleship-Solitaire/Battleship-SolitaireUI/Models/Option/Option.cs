@@ -7,26 +7,22 @@ namespace Battleship_SolitaireUI.Models.Option
 {
     public class Option : Model
     {
-        private int columns;
-        private int rows;
-        private List<ShipOption> ships;
+        private int columns = 10;
+        private int rows = 10;
+        private List<ShipOption> ships = new List<ShipOption>()
+        {
+            new ShipOption() { ShipType = ShipType.OnePiece, Amount = 4},
+            new ShipOption() { ShipType = ShipType.TwoPiece, Amount = 3},
+            new ShipOption() { ShipType = ShipType.ThreePiece, Amount = 2},
+            new ShipOption() { ShipType = ShipType.FourPiece, Amount = 1}
+        };
 
+        /*
         public Option()
         {
             Ships = new List<ShipOption>();
-
-            /*foreach (int value in Enum.GetValues(typeof(ShipType)))
-            {
-               Ships.Add(new ShipOption{ShipType = (ShipType)value}); 
-            }*/
-            Ships.Add(new ShipOption{ ShipType = ShipType.OnePiece, Amount = 4});
-            Ships.Add(new ShipOption { ShipType = ShipType.TwoPiece, Amount = 3 });
-            Ships.Add(new ShipOption { ShipType = ShipType.ThreePiece, Amount = 2 });
-            // 4piece ??
-
-            columns = 10;
-            rows = 10;
         }
+        */
 
         public List<ShipOption> Ships
         {
