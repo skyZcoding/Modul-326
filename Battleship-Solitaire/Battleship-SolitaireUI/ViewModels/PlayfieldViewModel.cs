@@ -78,8 +78,10 @@ namespace Battleship_SolitaireUI.ViewModels
 
             foreach (Field field in _playfield.Fields)
             {
-                if (!((field.Status == FieldStatus.Ship && field.HasShipPiece)
-                    || (field.Status != FieldStatus.Ship && !field.HasShipPiece)))
+                if (!((field.Status == FieldStatus.Ship && field.HasShipPiece) ||
+                    (field.Status == FieldStatus.Water && !field.HasShipPiece) ||
+                    field.Status != FieldStatus.Unassigned)
+                    )
                 {
                     win = false;
                     break;
