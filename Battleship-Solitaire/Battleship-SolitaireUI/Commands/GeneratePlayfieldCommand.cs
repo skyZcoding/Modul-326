@@ -60,6 +60,38 @@ namespace Battleship_SolitaireUI.Commands
                     PlaceShip(new Ship { ShipType = ship.ShipType }, newFields);
                 }
             }
+
+            // amount of fields / 3 = amount which should be shown
+            int fieldCount = _playfield.Fields.Count / 3;
+            // Random Class (Check if field status is "turned over")
+            Random rnd = new Random();
+
+            // counts amount of fields that have been made visible
+            int changedFields = 0;
+            while (changedFields < fieldCount)
+            {
+                // gen y coordinate
+                int yCoord = rnd.Next(0, _option.Columns);
+                // gen x coordinate
+                int xCoord = rnd.Next(0, _option.Rows);
+
+                Field randomField = _playfield.Fields.First(f => f.XCoordinate == xCoord && f.YCoordinate == yCoord);
+
+                if (randomField.Status == FieldStatus.Unassigned)
+                {
+                    if (randomField.HasShipPiece)
+                    {
+                        randomField.Status = FieldStatus.Ship;
+                    }
+                    else if (!randomField.HasShipPiece)
+                    {
+                        randomField.Status = FieldStatus.Water;
+                    }
+
+                    changedFields++;
+                }
+                // else -> field has already been assigned, therefore, it is not interesting to us.
+            }
         }
 
 
