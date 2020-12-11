@@ -37,6 +37,52 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        public List<RowViewModel> Rows
+        {
+            get
+            {
+                List<RowViewModel> rows = new List<RowViewModel>();
+
+                for (int row = 0; row < _option.Rows; row++)
+                {
+                    rows.Add(new RowViewModel(row, _playfield));
+                }
+
+                return rows;
+            }
+        }
+
+        public List<ColumnViewModel> Columns
+        {
+            get
+            {
+                List<ColumnViewModel> columns = new List<ColumnViewModel>();
+
+                for (int column = 0; column < _option.Columns; column++)
+                {
+                    columns.Add(new ColumnViewModel(column, _playfield));
+                }
+
+                return columns;
+            }
+        }
+
+        public int GameSizeRows
+        {
+            get
+            {
+                return _option.Rows + 1;
+            }
+        }
+
+        public int GameSizeColumns
+        {
+            get
+            {
+                return _option.Columns + 1;
+            }
+        }
+
         public Playfield Playfield
         {
             get
@@ -73,7 +119,7 @@ namespace Battleship_SolitaireUI.ViewModels
 
         private bool CheckForWin()
         {
- 
+
             bool win = true;
 
             foreach (Field field in _playfield.Fields)
