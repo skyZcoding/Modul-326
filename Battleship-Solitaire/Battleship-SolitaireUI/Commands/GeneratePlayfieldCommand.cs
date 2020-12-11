@@ -12,7 +12,7 @@ namespace Battleship_SolitaireUI.Commands
     public class GeneratePlayfieldCommand : ICommand
     {
         private Playfield _playfield;
-        private Option _option;
+        private readonly Option _option;
 
         public GeneratePlayfieldCommand(Playfield playfield, Option option)
         {
@@ -21,7 +21,10 @@ namespace Battleship_SolitaireUI.Commands
         }
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _option.Columns != 0
+                && _option.Rows != 0
+                && _option.Ships != null
+                && _option.Ships.Count != 0;
         }
 
         public void Execute(object parameter)
