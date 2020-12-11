@@ -89,7 +89,7 @@ namespace Battleship_SolitaireUI.ViewModels
             using (DrawingContext drawingContext = drawingVisual.RenderOpen())
             {
                 SolidColorBrush colorBrush = new SolidColorBrush();
-                colorBrush.Color = Color.FromRgb(255, 255, 255);
+                colorBrush.Color = Color.FromRgb(37, 37, 37);
                 drawingContext.DrawRectangle(colorBrush, null,
                 new Rect(new Point(), new Size(width + 10, height + 10)));
             }
