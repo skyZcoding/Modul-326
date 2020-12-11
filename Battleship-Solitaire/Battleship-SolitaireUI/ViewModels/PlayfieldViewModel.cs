@@ -35,14 +35,16 @@ namespace Battleship_SolitaireUI.ViewModels
                 field.Status = (FieldStatus)0;
             }
 
-            _playfield.Finished = CheckForWin();
+            _playfield.Status = CheckForWin();
 
         }
 
-        private bool CheckForWin()
+        private PlayfieldStatus CheckForWin()
         {
-
             bool win = true;
+            bool allFieldsSet = true;
+            // becuase CheckForWin is only executed, when a field has been clicked
+            PlayfieldStatus status = PlayfieldStatus.InProgress;
 
             foreach (Field field in _playfield.Fields)
             {
@@ -54,9 +56,23 @@ namespace Battleship_SolitaireUI.ViewModels
                     win = false;
                     break;
                 }
+
+                if (field.Status == FieldStatus.Unassigned)
+                {
+                    allFieldsSet = false;
+                }
             }
 
-            return win;
+            if(allFieldsSet && !win)
+            {
+                status = PlayfieldStatus.Finished;
+            }
+            else if(win)
+            {
+                status = PlayfieldStatus.Won;
+            }
+
+            return status;
         }
     }
 }

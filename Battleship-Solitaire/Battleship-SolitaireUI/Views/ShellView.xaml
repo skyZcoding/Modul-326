@@ -42,11 +42,17 @@
             <Label.Style>
                 <Style TargetType="Label">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=Playfield.Finished}" Value="true">
-                            <Setter Property="Visibility" Value="Visible"/>
+                        <DataTrigger Binding="{Binding Path=Playfield.Status}" Value="PlayfieldStatus.NotStarted">
+                            <Setter Property="Content" Value="Not Started"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=Playfield.Finished}" Value="false">
-                            <Setter Property="Visibility" Value="Hidden" />
+                        <DataTrigger Binding="{Binding Path=Playfield.Status}" Value="PlayfieldStatus.InProgress">
+                            <Setter Property="Content" Value="In Progress"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Playfield.Status}" Value="PlayfieldStatus.Finished">
+                            <Setter Property="Content" Value="Finished"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Playfield.Status}" Value="PlayfieldStatus.Won">
+                            <Setter Property="Content" Value="Won"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
