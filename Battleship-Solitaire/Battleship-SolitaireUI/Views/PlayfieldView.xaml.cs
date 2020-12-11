@@ -2,19 +2,9 @@
 using Battleship_SolitaireUI.Models.Playfield;
 using Battleship_SolitaireUI.Models.Ship;
 using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Battleship_SolitaireUI.Views
 {
@@ -41,6 +31,7 @@ namespace Battleship_SolitaireUI.Views
         {
             if (isConfigSet)
             {
+                ClearGrid();
                 InitialiseGrid();
                 InitialiseButtons();
                 InitialiseLabels();
@@ -51,11 +42,11 @@ namespace Battleship_SolitaireUI.Views
         {
             GridLength gridLength = new GridLength(1, GridUnitType.Star);
 
-            for (int column = 0; column < _option.Columns; column++)
+            for (int column = 0; column < _option.Columns + 1; column++)
             {
                 PlayfieldGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = gridLength });
             }
-            for (int row = 0; row < _option.Rows; row++)
+            for (int row = 0; row < _option.Rows + 1; row++)
             {
                 PlayfieldGrid.RowDefinitions.Add(new RowDefinition { Height = gridLength });
             }
@@ -90,7 +81,7 @@ namespace Battleship_SolitaireUI.Views
 
         private void UpdateColumnRow(ref int column, ref int row)
         {
-            if (column == _option.Columns - 1)
+            if (column == _option.Columns)
             {
                 column = 1;
                 row++;
@@ -107,13 +98,13 @@ namespace Battleship_SolitaireUI.Views
             int baseColumn = 0;
 
 
-            for (int row = 1; row < _option.Rows; row++)
+            for (int row = 1; row < _option.Rows + 1; row++)
             {
                 int amountOfShipPieces = 0;
 
                 foreach (Ship ship in _playfield.Ships)
                 {
-                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Where(sp => sp.Field.YCoordinate == row - 1).Count();
+                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Count(sp => sp.Field.YCoordinate == row - 1);
                 }
 
                 Label newLabel = new Label
@@ -127,13 +118,13 @@ namespace Battleship_SolitaireUI.Views
                 Grid.SetRow(newLabel, row);
             }
 
-            for (int column = 1; column < _option.Columns; column++)
+            for (int column = 1; column < _option.Columns + 1; column++)
             {
                 int amountOfShipPieces = 0;
 
                 foreach (Ship ship in _playfield.Ships)
                 {
-                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Where(sp => sp.Field.XCoordinate == column - 1).Count();
+                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Count(sp => sp.Field.XCoordinate == column -1);
                 }
 
                 Label newLabel = new Label
@@ -146,6 +137,13 @@ namespace Battleship_SolitaireUI.Views
                 Grid.SetColumn(newLabel, column);
                 Grid.SetRow(newLabel, baseRow);
             }
+        }
+
+        private void ClearGrid()
+        {
+            PlayfieldGrid.Children.Clear();
+            PlayfieldGrid.ColumnDefinitions.Clear();
+            PlayfieldGrid.RowDefinitions.Clear();
         }
     }
 }
