@@ -25,7 +25,9 @@ namespace Battleship_SolitaireUI
 
         protected override void Configure()
         {
+            // Initialize Caliburn Features
             _container.Singleton<IWindowManager, WindowManager>();
+            _container.Singleton<IEventAggregator, EventAggregator>();
 
             // Initialize ViewModels
             _container.Singleton<ShellViewModel>();

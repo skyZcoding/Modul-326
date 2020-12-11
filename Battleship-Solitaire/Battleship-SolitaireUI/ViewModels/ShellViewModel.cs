@@ -94,7 +94,6 @@ namespace Battleship_SolitaireUI.ViewModels
                 new Rect(new Point(), new Size(width + 10, height + 10)));
             }
 
-
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)width + 10, (int)height + 10, 96, 96, PixelFormats.Pbgra32);
 
             rtb.Render(drawingVisual);
@@ -134,6 +133,8 @@ namespace Battleship_SolitaireUI.ViewModels
         {
             PlayfieldView.Refresh();
             mGeneratePlayfield.Execute(null);
+            IEventAggregator eventAggregator = IoC.Get<IEventAggregator>();
+            eventAggregator.PublishOnUIThread(true);
             PlayfieldView.Refresh();
         }
 

@@ -38,28 +38,8 @@
                 </MultiDataTrigger>
             </Style.Triggers>
         </Style>
-        <DataTemplate x:Key="FieldRow">
-            <StackPanel Orientation="Horizontal">
-                <ItemsControl ItemsSource="{Binding Path=Fields}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="{Binding Path=AmountOfFields}" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Width="30" Height="30"
-                                    Margin="5" cal:Message.Attach="UpdateStatus($dataContext)"
-                                    Style="{StaticResource ButtonStyle}"
-                                    Foreground="White">
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-        </DataTemplate>
     </UserControl.Resources>
-    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <ItemsControl ItemsSource="{Binding Path=Fields}" ItemTemplate="{StaticResource ResourceKey=FieldRow}"/>
-    </StackPanel>
+    <Grid x:Name="PlayfieldGrid">
+
+    </Grid>
 </UserControl>
