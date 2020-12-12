@@ -8,6 +8,7 @@ using Battleship_SolitaireUI.Enums;
 using Battleship_SolitaireUI.Models.Option;
 using Battleship_SolitaireUI.Models.Playfield;
 using Caliburn.Micro;
+using System.Linq;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
@@ -35,28 +36,30 @@ namespace Battleship_SolitaireUI.ViewModels
                 field.Status = (FieldStatus)0;
             }
 
-            _playfield.Finished = CheckForWin();
+            _playfield.Status = CheckForWin();
 
         }
 
-        private bool CheckForWin()
+        private PlayfieldStatus CheckForWin()
         {
+            bool win = _playfield.Fields.Any(f => !((f.Status == FieldStatus.Ship && f.HasShipPiece) ||
+                                            (f.Status == FieldStatus.Water && !f.HasShipPiece) &&
+                                            f.Status != FieldStatus.Unassigned));
 
-            bool win = true;
+            bool allFieldsSet = !_playfield.Fields.Any(f => f.Status == FieldStatus.Unassigned);
 
-            foreach (Field field in _playfield.Fields)
+            PlayfieldStatus status = PlayfieldStatus.InProgress;
+
+            if(allFieldsSet && !win)
             {
-                if (!((field.Status == FieldStatus.Ship && field.HasShipPiece) ||
-                    (field.Status == FieldStatus.Water && !field.HasShipPiece) &&
-                    field.Status != FieldStatus.Unassigned)
-                    )
-                {
-                    win = false;
-                    break;
-                }
+                status = PlayfieldStatus.Lost;
+            }
+            else if(allFieldsSet && win)
+            {
+                status = PlayfieldStatus.Won;
             }
 
-            return win;
+            return status;
         }
     }
 }

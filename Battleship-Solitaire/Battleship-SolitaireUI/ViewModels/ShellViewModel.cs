@@ -132,6 +132,7 @@ namespace Battleship_SolitaireUI.ViewModels
         public void StartGame()
         {
             PlayfieldView.Refresh();
+            _playfield.Status = Enums.PlayfieldStatus.InProgress;
             mGeneratePlayfield.Execute(null);
             IEventAggregator eventAggregator = IoC.Get<IEventAggregator>();
             eventAggregator.PublishOnUIThread(true);

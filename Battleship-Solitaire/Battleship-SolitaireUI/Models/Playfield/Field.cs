@@ -5,8 +5,6 @@ namespace Battleship_SolitaireUI.Models.Playfield
 {
     public class Field : Model
     {
-        private bool isRightClicked;
-        private bool isLeftClicked;
         private int xCoordinate;
         private int yCoordinate;
         private FieldStatus status;

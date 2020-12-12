@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Battleship_SolitaireUI.Enums;
+using Battleship_SolitaireUI.Extensions;
+using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Models.Playfield
 {
@@ -6,7 +8,7 @@ namespace Battleship_SolitaireUI.Models.Playfield
     {
         private List<Field> fields;
         private List<Ship.Ship> ships;
-        private bool finished;
+        private PlayfieldStatus status = PlayfieldStatus.NotStarted;
 
         public Playfield()
         {
@@ -35,18 +37,17 @@ namespace Battleship_SolitaireUI.Models.Playfield
         }
 
 
-        public bool Finished
+        public PlayfieldStatus Status
         {
             get
-            { 
-                return finished; 
+            {
+                return status;
             }
             set
-            { 
-                finished = value;
-                OnPropertyChanged(nameof(Finished));
+            {
+                status = value;
+                OnPropertyChanged(nameof(Status));
             }
         }
-
     }
 }
