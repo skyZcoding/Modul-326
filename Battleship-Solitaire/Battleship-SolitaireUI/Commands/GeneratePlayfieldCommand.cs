@@ -144,10 +144,22 @@ namespace Battleship_SolitaireUI.Commands
             return _playfield.Ships
                 .Any(s =>
                     s.ShipPieces
-                        .Any(sp => xCoordinate - 1 < sp.Field.XCoordinate
-                            && xCoordinate + 1 > sp.Field.XCoordinate
-                            && yCoordinate - 1 < sp.Field.YCoordinate
-                            && yCoordinate + 1 > sp.Field.YCoordinate));
+                        .Any(sp => (xCoordinate - 1 == sp.Field.XCoordinate
+                                && yCoordinate == sp.Field.YCoordinate)
+                            || (xCoordinate + 1 == sp.Field.XCoordinate
+                                && yCoordinate == sp.Field.YCoordinate)
+                            || (xCoordinate == sp.Field.XCoordinate
+                                && yCoordinate - 1 == sp.Field.YCoordinate)
+                            || (xCoordinate  == sp.Field.XCoordinate
+                                && yCoordinate + 1 == sp.Field.YCoordinate)
+                            || (xCoordinate + 1 == sp.Field.XCoordinate
+                                && yCoordinate + 1 == sp.Field.YCoordinate)
+                            || (xCoordinate - 1 == sp.Field.XCoordinate
+                                && yCoordinate - 1 == sp.Field.YCoordinate)
+                            || (xCoordinate - 1 == sp.Field.XCoordinate
+                                && yCoordinate + 1 == sp.Field.YCoordinate)
+                            || (xCoordinate + 1 == sp.Field.XCoordinate
+                                && yCoordinate - 1== sp.Field.YCoordinate)));
         }
 
         private bool PlaceShipPiece(Ship ship, List<Field> fields, int xCoordinate, int yCoordinate)

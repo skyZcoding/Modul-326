@@ -111,6 +111,8 @@ namespace Battleship_SolitaireUI.Views
                 {
                     Content = amountOfShipPieces,
                     Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
 
                 PlayfieldGrid.Children.Add(newLabel);
@@ -131,6 +133,8 @@ namespace Battleship_SolitaireUI.Views
                 {
                     Content = amountOfShipPieces,
                     Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
 
                 PlayfieldGrid.Children.Add(newLabel);
