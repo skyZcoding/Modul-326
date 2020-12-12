@@ -64,8 +64,8 @@ namespace Battleship_SolitaireUI.Commands
                 }
             }
 
-            // amount of fields / 3 = amount which should be shown
-            int fieldCount = _playfield.Fields.Count / 3;
+            // amount of fields / 2 = amount which should be shown
+            int fieldCount = (int)((double)_playfield.Fields.Count / 100 * 70);
             // Random Class (Check if field status is "turned over")
             Random rnd = new Random();
 

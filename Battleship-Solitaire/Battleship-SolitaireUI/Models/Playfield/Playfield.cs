@@ -1,4 +1,5 @@
 ﻿using Battleship_SolitaireUI.Enums;
+using Battleship_SolitaireUI.Extensions;
 using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Models.Playfield
@@ -39,15 +40,14 @@ namespace Battleship_SolitaireUI.Models.Playfield
         public PlayfieldStatus Status
         {
             get
-            { 
-                return status; 
+            {
+                return status;
             }
             set
-            { 
+            {
                 status = value;
                 OnPropertyChanged(nameof(Status));
             }
         }
-
     }
 }

@@ -17,13 +17,6 @@ namespace Battleship_SolitaireUI.Models.Option
             new ShipOption() { ShipType = ShipType.FourPiece, Amount = 1}
         };
 
-        /*
-        public Option()
-        {
-            Ships = new List<ShipOption>();
-        }
-        */
-
         public List<ShipOption> Ships
         {
             get
