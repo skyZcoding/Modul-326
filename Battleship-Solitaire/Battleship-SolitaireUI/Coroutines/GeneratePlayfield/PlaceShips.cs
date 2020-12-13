@@ -117,10 +117,10 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
         /// <summary>
         /// tries to place the shippiece in the playfield
         /// </summary>
-        /// <param name="ship"></param>
-        /// <param name="xCoordinate"></param>
-        /// <param name="yCoordinate"></param>
-        /// <returns></returns>
+        /// <param name="ship">the ship which is should be placed</param>
+        /// <param name="xCoordinate">the x coordinate from the placed shippiece</param>
+        /// <param name="yCoordinate">the y coordinate from the placed shippiece</param>
+        /// <returns>if the placing of the shippiece was successful</returns>
         private bool PlaceShipPiece(Ship ship, int xCoordinate, int yCoordinate)
         {
             if (_playfield.Ships
