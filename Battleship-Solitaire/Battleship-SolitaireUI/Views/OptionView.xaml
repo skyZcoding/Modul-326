@@ -28,14 +28,20 @@
                 </Grid.ColumnDefinitions>
                 <Label>Columns:</Label>
                 <Label Grid.Row="1">Rows:</Label>
-                <TextBox  Grid.Column="1"
-                          Width="75" Margin="5"
-                          x:Name="Option_Columns"
-                          cal:Message.Attach="[Event TextChanged] = [Action OptionsOnChange()]"></TextBox>
-                <TextBox  Grid.Column="1" Grid.Row="1"
-                          Width="75" Margin="5"
-                          x:Name="Option_Rows"
-                          cal:Message.Attach="[Event TextChanged] = [Action OptionsOnChange()]"></TextBox>
+                <mah:NumericUpDown Minimum="1" Maximum="15" Interval="1"
+                           Grid.Column="1" Grid.Row="0"
+                           Width="75" Margin="5"
+                           Value="{Binding Path=Option.Columns}"
+                           x:Name="Option_Columns"
+                           cal:Message.Attach="[Event ValueChanged] = [Action OptionsOnChange()]">
+                </mah:NumericUpDown>
+                <mah:NumericUpDown Minimum="1" Maximum="15" Interval="1"
+                           Grid.Column="1" Grid.Row="1"
+                           Width="75" Margin="5"
+                           Value="{Binding Path=Option.Rows}"
+                           x:Name="Option_Rows"
+                           cal:Message.Attach="[Event ValueChanged] = [Action OptionsOnChange()]">
+                </mah:NumericUpDown>
             </Grid>
         </StackPanel>
         <Label Content="Too much ships!" Foreground="Red"
@@ -53,6 +59,7 @@
                 </Style>
             </Label.Style>
         </Label>
+
         <ListView Margin="5"
                   VerticalAlignment="Center" HorizontalAlignment="Center"
                   Grid.Column="1" x:Name="Option_Ships" MinHeight="350" MinWidth="500">

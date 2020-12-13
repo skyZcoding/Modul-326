@@ -17,6 +17,7 @@ namespace Battleship_SolitaireUI.ViewModels
         public OptionViewModel(Option option)
         {
             _option = option;
+            OptionsOnChange();
         }
 
         public Option Option
