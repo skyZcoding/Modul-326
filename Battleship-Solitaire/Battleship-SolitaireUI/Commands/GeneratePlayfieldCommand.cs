@@ -74,9 +74,9 @@ namespace Battleship_SolitaireUI.Commands
             while (changedFields < fieldCount)
             {
                 // gen y coordinate
-                int yCoord = rnd.Next(0, _option.Columns);
+                int yCoord = rnd.Next(0, _option.Rows);
                 // gen x coordinate
-                int xCoord = rnd.Next(0, _option.Rows);
+                int xCoord = rnd.Next(0, _option.Columns);
 
                 Field randomField = _playfield.Fields.First(f => f.XCoordinate == xCoord && f.YCoordinate == yCoord);
 
