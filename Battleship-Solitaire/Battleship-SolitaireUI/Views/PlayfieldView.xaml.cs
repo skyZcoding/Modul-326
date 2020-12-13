@@ -11,7 +11,7 @@ namespace Battleship_SolitaireUI.Views
     /// <summary>
     /// Interaction logic for PlayfieldView.xaml
     /// </summary>
-    public partial class PlayfieldView : UserControl, IHandle<bool>
+    public partial class PlayfieldView : UserControl, IHandle<object>
     {
         private readonly Option _option;
         private readonly Playfield _playfield;
@@ -27,17 +27,20 @@ namespace Battleship_SolitaireUI.Views
             _playfield = IoC.Get<Playfield>();
         }
 
-        public void Handle(bool isConfigSet)
+        /// <summary>
+        /// Gets executed when the playfield gets generated and tries to create the visual playfield
+        /// </summary>
+        public void Handle(object param)
         {
-            if (isConfigSet)
-            {
-                ClearGrid();
-                InitialiseGrid();
-                InitialiseButtons();
-                InitialiseLabels();
-            }
+            ClearGrid();
+            InitialiseGrid();
+            InitialiseButtons();
+            InitialiseLabels();
         }
 
+        /// <summary>
+        /// Creates the grid for the playfield
+        /// </summary>
         private void InitialiseGrid()
         {
             GridLength gridLength = new GridLength(1, GridUnitType.Star);
@@ -52,6 +55,9 @@ namespace Battleship_SolitaireUI.Views
             }
         }
 
+        /// <summary>
+        /// Creates all buttons which represent a field
+        /// </summary>
         private void InitialiseButtons()
         {
             int row = 1;
@@ -79,6 +85,11 @@ namespace Battleship_SolitaireUI.Views
             }
         }
 
+        /// <summary>
+        /// Updates the position of the button correctly
+        /// </summary>
+        /// <param name="column">the column of the last button</param>
+        /// <param name="row">the row of the last button</param>
         private void UpdateColumnRow(ref int column, ref int row)
         {
             if (column == _option.Columns)
@@ -92,6 +103,9 @@ namespace Battleship_SolitaireUI.Views
             }
         }
 
+        /// <summary>
+        /// Creates the Label which tells you how many shippieces are in the row/column
+        /// </summary>
         private void InitialiseLabels()
         {
             int baseRow = 0;
@@ -143,6 +157,9 @@ namespace Battleship_SolitaireUI.Views
             }
         }
 
+        /// <summary>
+        /// Resets the whole playfield
+        /// </summary>
         private void ClearGrid()
         {
             PlayfieldGrid.Children.Clear();

@@ -64,7 +64,7 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
                 // else -> field has already been assigned, therefore, it is not interesting to us.
             }
 
-            _eventAggregator.PublishOnUIThread(true);
+            _eventAggregator.PublishOnUIThread(null);
             _playfield.Status = Enums.PlayfieldStatus.InProgress;
             _playfieldViewModel.Refresh();
             Completed(this, new ResultCompletionEventArgs());
