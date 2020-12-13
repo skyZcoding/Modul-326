@@ -11,7 +11,7 @@ namespace Battleship_SolitaireUI.Views
     /// <summary>
     /// Interaction logic for PlayfieldView.xaml
     /// </summary>
-    public partial class PlayfieldView : UserControl, IHandle<object>
+    public partial class PlayfieldView : UserControl, IHandle<bool>
     {
         private readonly Option _option;
         private readonly Playfield _playfield;
@@ -30,12 +30,15 @@ namespace Battleship_SolitaireUI.Views
         /// <summary>
         /// Gets executed when the playfield gets generated and tries to create the visual playfield
         /// </summary>
-        public void Handle(object param)
+        public void Handle(bool isSuccessfullyCreated)
         {
-            ClearGrid();
-            InitialiseGrid();
-            InitialiseButtons();
-            InitialiseLabels();
+            if (isSuccessfullyCreated)
+            {
+                ClearGrid();
+                InitialiseGrid();
+                InitialiseButtons();
+                InitialiseLabels();
+            }
         }
 
         /// <summary>

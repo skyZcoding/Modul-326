@@ -17,11 +17,17 @@ namespace Battleship_SolitaireUI
             Initialize();
         }
 
+        /// <summary>
+        /// Sets the startup view
+        /// </summary>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             DisplayRootViewFor<ShellViewModel>();
         }
 
+        /// <summary>
+        /// Initalize the dependency injection
+        /// </summary>
         protected override void Configure()
         {
             // Initialize Caliburn Features
@@ -38,11 +44,17 @@ namespace Battleship_SolitaireUI
             _container.Singleton<Playfield>();
         }
 
+        /// <summary>
+        /// Returns the instance
+        /// </summary>
         protected override object GetInstance(Type service, string key)
         {
             return _container.GetInstance(service, key);
         }
 
+        /// <summary>
+        /// Returns all instances
+        /// </summary>
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
             return _container.GetAllInstances(service);
