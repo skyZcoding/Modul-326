@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace Battleship_SolitaireUI.Models.Playfield
 {
+    /// <summary>
+    /// Represents the playfield of the game
+    /// </summary>
     public class Playfield : Model
     {
         private List<Field> fields;
@@ -16,6 +19,9 @@ namespace Battleship_SolitaireUI.Models.Playfield
             Ships = new List<Ship.Ship>();
         }
 
+        /// <summary>
+        /// All fields from the playfield
+        /// </summary>
         public List<Field> Fields
         {
             get => fields;
@@ -26,6 +32,9 @@ namespace Battleship_SolitaireUI.Models.Playfield
             }
         }
 
+        /// <summary>
+        /// All ships from the playfield
+        /// </summary>
         public List<Ship.Ship> Ships
         {
             get => ships;
@@ -36,7 +45,9 @@ namespace Battleship_SolitaireUI.Models.Playfield
             }
         }
 
-
+        /// <summary>
+        /// The current status of the playfield
+        /// </summary>
         public PlayfieldStatus Status
         {
             get

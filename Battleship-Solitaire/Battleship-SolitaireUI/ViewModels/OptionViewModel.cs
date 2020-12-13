@@ -9,6 +9,9 @@ using Battleship_SolitaireUI.Models.Ship;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the option view
+    /// </summary>
     public class OptionViewModel : Screen
     {
         private Option _option;
@@ -20,6 +23,9 @@ namespace Battleship_SolitaireUI.ViewModels
             OptionsOnChange();
         }
 
+        /// <summary>
+        /// Contains the current configuration
+        /// </summary>
         public Option Option
         {
             get
@@ -33,6 +39,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Returns if the configuration is valid
+        /// </summary>
         public bool IsValid
         {
             get
@@ -41,6 +50,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Check if the new configuration is valid
+        /// </summary>
         public void OptionsOnChange()
         {
             int neededFields = 0;

@@ -6,11 +6,17 @@ using Battleship_SolitaireUI.Extensions;
 
 namespace Battleship_SolitaireUI.Models.Option
 {
+    /// <summary>
+    /// The configuration of a ship
+    /// </summary>
     public class ShipOption : Model
     {
         private int amount;
         private ShipType shipType;
 
+        /// <summary>
+        /// The shiptype of the configured ship
+        /// </summary>
         public ShipType ShipType
         {
             get
@@ -24,6 +30,9 @@ namespace Battleship_SolitaireUI.Models.Option
             }
         }
 
+        /// <summary>
+        /// Returns the name of the shiptype
+        /// </summary>
         public string Name
         {
             get
@@ -32,6 +41,9 @@ namespace Battleship_SolitaireUI.Models.Option
             }
         }
 
+        /// <summary>
+        /// The amount of ships
+        /// </summary>
         public int Amount
         {
             get

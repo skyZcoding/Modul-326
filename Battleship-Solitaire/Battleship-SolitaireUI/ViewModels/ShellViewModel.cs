@@ -15,6 +15,9 @@ using Battleship_SolitaireUI.Coroutines.ExportPlayfield;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the shell view
+    /// </summary>
     public class ShellViewModel : Screen
     {
         private PlayfieldViewModel _playfieldViewModel;
@@ -30,6 +33,9 @@ namespace Battleship_SolitaireUI.ViewModels
             _playfield = playfield;
         }
 
+        /// <summary>
+        /// Returns the playfield
+        /// </summary>
         public Playfield Playfield
         {
             get
@@ -38,6 +44,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// ViewModel for the playfield view
+        /// </summary>
         public PlayfieldViewModel PlayfieldViewModel
         {
             get
@@ -51,6 +60,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Contains all task which are needed to export the playfield
+        /// </summary>
         public IEnumerable<IResult> ExportPlayfield
         {
             get
@@ -59,6 +71,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Contains all the task which are needed to generate the playfield
+        /// </summary>
         public IEnumerable<IResult> GeneratePlayfield
         {
             get
@@ -69,16 +84,25 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets executed when the save button is clicked and tries then to export the playfield
+        /// </summary>
         public void Export()
         {
             Coroutine.BeginExecute(ExportPlayfield.GetEnumerator());
         }
 
+        /// <summary>
+        /// Gets executed when the start button is clicked and tries then to generate the playfield
+        /// </summary>
         public void StartGame()
         {
             Coroutine.BeginExecute(GeneratePlayfield.GetEnumerator());
         }
 
+        /// <summary>
+        /// Gets executed when the options button is clicked and tries then to open the options window
+        /// </summary>
         public void OpenOptions()
         {
             _windowManager.ShowDialog(_optionViewModel);

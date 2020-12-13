@@ -2,6 +2,9 @@
 
 namespace Battleship_SolitaireUI.Enums
 {
+    /// <summary>
+    /// The possible shiptypes, the value represents the amount of shippieces the types has
+    /// </summary>
     public enum ShipType
     {
         [Description("Submarines")]

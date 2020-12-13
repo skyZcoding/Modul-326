@@ -5,6 +5,9 @@ using Battleship_SolitaireUI.Enums;
 
 namespace Battleship_SolitaireUI.Models.Option
 {
+    /// <summary>
+    /// Contains all the configuration that the user can make
+    /// </summary>
     public class Option : Model
     {
         private int columns = 10;
@@ -17,6 +20,9 @@ namespace Battleship_SolitaireUI.Models.Option
             new ShipOption() { ShipType = ShipType.FourPiece, Amount = 1}
         };
 
+        /// <summary>
+        /// All configured ships
+        /// </summary>
         public List<ShipOption> Ships
         {
             get
@@ -30,7 +36,9 @@ namespace Battleship_SolitaireUI.Models.Option
             }
         }
 
-
+        /// <summary>
+        /// The configured rows of the playfield
+        /// </summary>
         public int Rows
         {
             get
@@ -44,6 +52,9 @@ namespace Battleship_SolitaireUI.Models.Option
             }
         }
 
+        /// <summary>
+        /// The configured columns of the playfield
+        /// </summary>
         public int Columns
         {
             get
