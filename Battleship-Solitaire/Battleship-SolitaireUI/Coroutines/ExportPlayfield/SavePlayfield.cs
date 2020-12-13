@@ -11,6 +11,9 @@ using System.Windows.Media.Imaging;
 
 namespace Battleship_SolitaireUI.Coroutines.ExportPlayfield
 {
+    /// <summary>
+    /// Save the whole playfield as a png
+    /// </summary>
     public class SavePlayfield : IResult
     {
         private readonly PlayfieldViewModel _playfieldViewModel;
@@ -20,6 +23,9 @@ namespace Battleship_SolitaireUI.Coroutines.ExportPlayfield
             _playfieldViewModel = IoC.Get<PlayfieldViewModel>();
         }
 
+        /// <summary>
+        /// Gets the current playfield view and try to save it as png
+        /// </summary>
         public void Execute(CoroutineExecutionContext context)
         {
             RenderTargetBitmap rtb = GetRenderedPlayfield((UserControl)_playfieldViewModel.GetView());
@@ -29,6 +35,11 @@ namespace Battleship_SolitaireUI.Coroutines.ExportPlayfield
             Completed(this, new ResultCompletionEventArgs());
         }
 
+        /// <summary>
+        /// Save the rendered bitmap on the generated path
+        /// </summary>
+        /// <param name="path">generated path for the image</param>
+        /// <param name="rtb">the playfield rendered as a bitmap</param>
         private void SaveImage(string path, RenderTargetBitmap rtb)
         {
             using (FileStream stream = new FileStream(path, FileMode.Create))
@@ -41,6 +52,11 @@ namespace Battleship_SolitaireUI.Coroutines.ExportPlayfield
             MessageBox.Show("Image saved to: " + path);
         }
 
+        /// <summary>
+        /// Rendering the playfield to a bitmap image
+        /// </summary>
+        /// <param name="playfield">the whole playfieldview</param>
+        /// <returns>the rendered bitmap image</returns>
         private RenderTargetBitmap GetRenderedPlayfield(UserControl playfield)
         {
             double height = playfield.ActualHeight;
@@ -64,6 +80,10 @@ namespace Battleship_SolitaireUI.Coroutines.ExportPlayfield
             return rtb;
         }
 
+        /// <summary>
+        /// Generates the new directory for the image
+        /// </summary>
+        /// <returns>the new file path for the image</returns>
         private string GetNewFileDirectory()
         {
             string name = "battleship-solitaire";

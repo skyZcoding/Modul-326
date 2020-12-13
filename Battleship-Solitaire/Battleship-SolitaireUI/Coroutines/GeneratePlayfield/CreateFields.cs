@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
 {
+    /// <summary>
+    /// Generates all the fields which are configured in <see cref="Models.Option.Option"/>
+    /// </summary>
     public class CreateFields : IResult
     {
         private readonly Playfield _playfield;
@@ -19,6 +22,9 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
             _option = IoC.Get<Option>();
         }
 
+        /// <summary>
+        /// Resets the fields and create the new fields
+        /// </summary>
         public void Execute(CoroutineExecutionContext context)
         {
             _playfield.Fields = new List<Field>();

@@ -10,6 +10,9 @@ using System.Text;
 
 namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
 {
+    /// <summary>
+    /// Finalize the playfield that it is ready to be played
+    /// </summary>
     public class FinalizePlayfield : IResult
     {
         private readonly Playfield _playfield;
@@ -24,6 +27,9 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
             _playfieldViewModel = IoC.Get<PlayfieldViewModel>();
         }
 
+        /// <summary>
+        /// reveal 70 % of all fields and refresh the whole view
+        /// </summary>
         public void Execute(CoroutineExecutionContext context)
         {
             // amount of fields / 2 = amount which should be shown
