@@ -9,6 +9,11 @@ namespace Battleship_SolitaireUI.Extensions
 {
     public static class EnumHelper
     {
+        /// <summary>
+        /// Get the description of a enum
+        /// </summary>
+        /// <param name="enumValue">the enum value</param>
+        /// <returns>The description of the enum</returns>
         public static string GetDescriptionOfEnumValue(Enum enumValue)
         {
             FieldInfo fieldInfo = enumValue.GetType().GetField(enumValue.ToString());
