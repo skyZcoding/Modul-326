@@ -17,14 +17,22 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
     {
         private readonly Playfield _playfield;
         private readonly Option _option;
-        private readonly IEventAggregator _eventAggregator;
-        private readonly PlayfieldViewModel _playfieldViewModel;
+
         public FinalizePlayfield()
         {
             _playfield = IoC.Get<Playfield>();
             _option = IoC.Get<Option>();
-            _eventAggregator = IoC.Get<IEventAggregator>();
-            _playfieldViewModel = IoC.Get<PlayfieldViewModel>();
+        }
+
+        /// <summary>
+        /// Constructor for the unit testing
+        /// </summary>
+        /// <param name="playfield">fake playfield</param>
+        /// <param name="option">fake option</param>
+        public FinalizePlayfield(Playfield playfield, Option option)
+        {
+            _playfield = playfield;
+            _option = option;
         }
 
         /// <summary>
@@ -64,9 +72,6 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
                 // else -> field has already been assigned, therefore, it is not interesting to us.
             }
 
-            _eventAggregator.PublishOnUIThread(message: true);
-            _playfield.Status = Enums.PlayfieldStatus.InProgress;
-            _playfieldViewModel.Refresh();
             Completed(this, new ResultCompletionEventArgs());
         }
 
