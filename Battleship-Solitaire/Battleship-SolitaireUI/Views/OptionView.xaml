@@ -5,15 +5,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship_SolitaireUI.Views"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="OptionView" Height="450" Width="800"
-        ShowTitleBar="True">
+        ShowTitleBar="True"
+        IsCloseButtonEnabled="{Binding Path=IsValid}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" 
+        <StackPanel Orientation="Vertical"
                     VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
@@ -26,15 +28,39 @@
                 </Grid.ColumnDefinitions>
                 <Label>Columns:</Label>
                 <Label Grid.Row="1">Rows:</Label>
-                <TextBox Grid.Column="1" 
-                          Width="75" Margin="5"
-                          x:Name="Option_Columns"></TextBox>
-                <TextBox  Grid.Column="1" Grid.Row="1" 
-                          Width="75" Margin="5"
-                          x:Name="Option_Rows"></TextBox>
+                <mah:NumericUpDown Minimum="1" Maximum="15" Interval="1"
+                           Grid.Column="1" Grid.Row="0"
+                           Width="75" Margin="5"
+                           Value="{Binding Path=Option.Columns}"
+                           x:Name="Option_Columns"
+                           cal:Message.Attach="[Event ValueChanged] = [Action OptionsOnChange()]">
+                </mah:NumericUpDown>
+                <mah:NumericUpDown Minimum="1" Maximum="15" Interval="1"
+                           Grid.Column="1" Grid.Row="1"
+                           Width="75" Margin="5"
+                           Value="{Binding Path=Option.Rows}"
+                           x:Name="Option_Rows"
+                           cal:Message.Attach="[Event ValueChanged] = [Action OptionsOnChange()]">
+                </mah:NumericUpDown>
             </Grid>
         </StackPanel>
-        <ListView Margin="5" 
+        <Label Content="Too much ships!" Foreground="Red"
+               VerticalAlignment="Bottom" Margin="5" HorizontalAlignment="Center">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsValid}" Value="false">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsValid}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <ListView Margin="5"
                   VerticalAlignment="Center" HorizontalAlignment="Center"
                   Grid.Column="1" x:Name="Option_Ships" MinHeight="350" MinWidth="500">
             <ListView.View>
@@ -43,7 +69,7 @@
                     <GridViewColumn Header="Amount">
                         <GridViewColumn.CellTemplate >
                             <DataTemplate>
-                                <TextBox x:Name="Amount" Width="100"  Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox x:Name="Amount" Width="100"  Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}"  cal:Message.Attach="[Event TextChanged] = [Action OptionsOnChange()]"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

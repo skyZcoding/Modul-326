@@ -11,9 +11,9 @@ namespace Battleship_SolitaireUI.Models.Option
         private int rows = 10;
         private List<ShipOption> ships = new List<ShipOption>()
         {
-            new ShipOption() { ShipType = ShipType.OnePiece, Amount = 4},
-            new ShipOption() { ShipType = ShipType.TwoPiece, Amount = 3},
-            new ShipOption() { ShipType = ShipType.ThreePiece, Amount = 2},
+            new ShipOption() { ShipType = ShipType.OnePiece, Amount = 1},
+            new ShipOption() { ShipType = ShipType.TwoPiece, Amount = 1},
+            new ShipOption() { ShipType = ShipType.ThreePiece, Amount = 1},
             new ShipOption() { ShipType = ShipType.FourPiece, Amount = 1}
         };
 
