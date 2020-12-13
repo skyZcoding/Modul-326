@@ -23,6 +23,17 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
         }
 
         /// <summary>
+        /// Constructor for the unit testing
+        /// </summary>
+        /// <param name="playfield">fake playfield</param>
+        /// <param name="option">fake option</param>
+        public CreateFields(Playfield playfield, Option option)
+        {
+            _playfield = playfield;
+            _option = option;
+        }
+
+        /// <summary>
         /// Resets the fields and create the new fields
         /// </summary>
         public void Execute(CoroutineExecutionContext context)

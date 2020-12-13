@@ -22,13 +22,15 @@ namespace Battleship_SolitaireUI.ViewModels
     {
         private PlayfieldViewModel _playfieldViewModel;
         private readonly OptionViewModel _optionViewModel;
+        private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
         private readonly Playfield _playfield;
 
-        public ShellViewModel(IWindowManager windowManager, PlayfieldViewModel playfieldViewModel, OptionViewModel optionViewModel, Playfield playfield)
+        public ShellViewModel(IWindowManager windowManager, PlayfieldViewModel playfieldViewModel, OptionViewModel optionViewModel, Playfield playfield, IEventAggregator eventAggregator)
         {
             _playfieldViewModel = playfieldViewModel;
             _optionViewModel = optionViewModel;
+            _eventAggregator = eventAggregator;
             _windowManager = windowManager;
             _playfield = playfield;
         }
@@ -98,6 +100,9 @@ namespace Battleship_SolitaireUI.ViewModels
         public void StartGame()
         {
             Coroutine.BeginExecute(GeneratePlayfield.GetEnumerator());
+            _eventAggregator.PublishOnUIThread(message: true);
+            _playfield.Status = Enums.PlayfieldStatus.InProgress;
+            _playfieldViewModel.Refresh();
         }
 
         /// <summary>

@@ -25,7 +25,18 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
         }
 
         /// <summary>
-        /// iterates through each configured ship and try to place them
+        /// Constructor for the unit testing
+        /// </summary>
+        /// <param name="playfield">fake playfield</param>
+        /// <param name="option">fake option</param>
+        public PlaceShips(Playfield playfield, Option option)
+        {
+            _playfield = playfield;
+            _option = option;
+        }
+
+        /// <summary>
+        /// Iterates through each configured ship and try to place them
         /// </summary>
         public void Execute(CoroutineExecutionContext context)
         {
