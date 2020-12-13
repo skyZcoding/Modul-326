@@ -15,21 +15,25 @@ using Battleship_SolitaireUI.Coroutines.ExportPlayfield;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the shell view
+    /// </summary>
     public class ShellViewModel : Screen
     {
-        private PlayfieldViewModel _playfieldView;
         private readonly OptionViewModel _optionViewModel;
         private readonly IWindowManager _windowManager;
         private readonly Playfield _playfield;
 
-        public ShellViewModel(IWindowManager windowManager, PlayfieldViewModel playfieldViewModel, OptionViewModel optionViewModel, Playfield playfield)
+        public ShellViewModel(IWindowManager windowManager, OptionViewModel optionViewModel, Playfield playfield)
         {
-            _playfieldView = playfieldViewModel;
             _optionViewModel = optionViewModel;
             _windowManager = windowManager;
             _playfield = playfield;
         }
 
+        /// <summary>
+        /// Returns the playfield
+        /// </summary>
         public Playfield Playfield
         {
             get
@@ -38,19 +42,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
-        public PlayfieldViewModel PlayfieldView
-        {
-            get
-            {
-                return _playfieldView;
-            }
-            set
-            {
-                _playfieldView = value;
-                NotifyOfPropertyChange(() => PlayfieldView);
-            }
-        }
-
+        /// <summary>
+        /// Contains all task which are needed to export the playfield
+        /// </summary>
         public IEnumerable<IResult> ExportPlayfield
         {
             get
@@ -59,6 +53,9 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Contains all the task which are needed to generate the playfield
+        /// </summary>
         public IEnumerable<IResult> GeneratePlayfield
         {
             get
@@ -69,16 +66,25 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets executed when the save button is clicked and tries then to export the playfield
+        /// </summary>
         public void Export()
         {
             Coroutine.BeginExecute(ExportPlayfield.GetEnumerator());
         }
 
+        /// <summary>
+        /// Gets executed when the start button is clicked and tries then to generate the playfield
+        /// </summary>
         public void StartGame()
         {
             Coroutine.BeginExecute(GeneratePlayfield.GetEnumerator());
         }
 
+        /// <summary>
+        /// Gets executed when the options button is clicked and tries then to open the options window
+        /// </summary>
         public void OpenOptions()
         {
             _windowManager.ShowDialog(_optionViewModel);

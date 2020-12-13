@@ -11,6 +11,9 @@ using System.Linq;
 
 namespace Battleship_SolitaireUI.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the playfield view
+    /// </summary>
     public class PlayfieldViewModel : Screen
     {
         private readonly Playfield _playfield;
@@ -22,6 +25,10 @@ namespace Battleship_SolitaireUI.ViewModels
             _option = option;
         }
 
+        /// <summary>
+        /// Updates the status of the clicked field and check if the game is finished
+        /// </summary>
+        /// <param name="field">the clicked field</param>
         public void UpdateStatus(Field field)
         {
             int newFieldId = (int)field.Status + 1;
@@ -39,6 +46,10 @@ namespace Battleship_SolitaireUI.ViewModels
 
         }
 
+        /// <summary>
+        /// Checks if the player has won
+        /// </summary>
+        /// <returns></returns>
         private PlayfieldStatus CheckForWin()
         {
             bool win = _playfield.Fields.Any(f => !((f.Status == FieldStatus.Ship && f.HasShipPiece) ||
