@@ -23,7 +23,7 @@
             <Button Width="100" Height="40"
                     Margin="10"
                     x:Name="Save"
-                    cal:Message.Attach="Export(PlayfieldView)">Save</Button>
+                    cal:Message.Attach="Export">Save</Button>
             <Button Width="100" Height="40"
                     Margin="10" x:Name="StartGame"
                     >Start</Button>
