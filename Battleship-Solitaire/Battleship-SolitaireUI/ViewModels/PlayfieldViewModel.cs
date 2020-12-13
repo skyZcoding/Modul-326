@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Battleship_SolitaireUI.Commands;
 using Battleship_SolitaireUI.Enums;
 using Battleship_SolitaireUI.Models.Option;
 using Battleship_SolitaireUI.Models.Playfield;

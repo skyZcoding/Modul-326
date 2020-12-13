@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-using Battleship_SolitaireUI.Commands;
 using Battleship_SolitaireUI.Models.Option;
 using Battleship_SolitaireUI.Models.Playfield;
 using Battleship_SolitaireUI.ViewModels;
@@ -37,8 +36,6 @@ namespace Battleship_SolitaireUI
             // Initialize Models
             _container.Singleton<Option>();
             _container.Singleton<Playfield>();
-
-            _container.PerRequest<GeneratePlayfieldCommand>();
         }
 
         protected override object GetInstance(Type service, string key)
