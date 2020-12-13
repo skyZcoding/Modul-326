@@ -30,6 +30,7 @@ namespace Battleship_SolitaireUI.Coroutines.ExportPlayfield
         {
             RenderTargetBitmap rtb = GetRenderedPlayfield((UserControl)_playfieldViewModel.GetView());
             string path = GetNewFileDirectory();
+
             SaveImage(path, rtb);
 
             Completed(this, new ResultCompletionEventArgs());

@@ -117,47 +117,42 @@ namespace Battleship_SolitaireUI.Views
 
             for (int row = 1; row < _option.Rows + 1; row++)
             {
-                int amountOfShipPieces = 0;
-
-                foreach (Ship ship in _playfield.Ships)
-                {
-                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Count(sp => sp.Field.YCoordinate == row - 1);
-                }
-
-                Label newLabel = new Label
-                {
-                    Content = amountOfShipPieces,
-                    Margin = new Thickness(5),
-                    VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                };
-
-                PlayfieldGrid.Children.Add(newLabel);
-                Grid.SetColumn(newLabel, baseColumn);
-                Grid.SetRow(newLabel, row);
+                PlaceLabel(row, baseColumn, false);
             }
 
             for (int column = 1; column < _option.Columns + 1; column++)
             {
-                int amountOfShipPieces = 0;
-
-                foreach (Ship ship in _playfield.Ships)
-                {
-                    amountOfShipPieces = amountOfShipPieces + ship.ShipPieces.Count(sp => sp.Field.XCoordinate == column -1);
-                }
-
-                Label newLabel = new Label
-                {
-                    Content = amountOfShipPieces,
-                    Margin = new Thickness(5),
-                    VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                };
-
-                PlayfieldGrid.Children.Add(newLabel);
-                Grid.SetColumn(newLabel, column);
-                Grid.SetRow(newLabel, baseRow);
+                PlaceLabel(baseRow, column, true);
             }
+        }
+
+        /// <summary>
+        /// Places the label in the grid
+        /// </summary>
+        /// <param name="row">the row in which the label should be placed</param>
+        /// <param name="column">the column in which the label should be placed</param>
+        /// <param name="isColumn">if the the labels are in the column</param>
+        private void PlaceLabel(int row, int column, bool isColumn)
+        {
+            int amountOfShipPieces = 0;
+
+            foreach (Ship ship in _playfield.Ships)
+            {
+                amountOfShipPieces = amountOfShipPieces + (isColumn ?
+                    ship.ShipPieces.Count(sp => sp.Field.XCoordinate == column - 1) : ship.ShipPieces.Count(sp => sp.Field.YCoordinate == row - 1));
+            }
+
+            Label newLabel = new Label
+            {
+                Content = amountOfShipPieces,
+                Margin = new Thickness(5),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+
+            PlayfieldGrid.Children.Add(newLabel);
+            Grid.SetColumn(newLabel, column);
+            Grid.SetRow(newLabel, row);
         }
 
         /// <summary>
