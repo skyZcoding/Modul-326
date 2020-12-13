@@ -27,6 +27,7 @@ namespace Battleship_SolitaireUI.ViewModels
 
         public ShellViewModel(IWindowManager windowManager, PlayfieldViewModel playfieldViewModel, OptionViewModel optionViewModel, Playfield playfield)
         {
+            _playfieldViewModel = playfieldViewModel;
             _optionViewModel = optionViewModel;
             _windowManager = windowManager;
             _playfield = playfield;
