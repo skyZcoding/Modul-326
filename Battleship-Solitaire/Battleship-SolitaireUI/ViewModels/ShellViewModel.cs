@@ -17,14 +17,14 @@ namespace Battleship_SolitaireUI.ViewModels
 {
     public class ShellViewModel : Screen
     {
-        private PlayfieldViewModel _playfieldView;
+        private PlayfieldViewModel _playfieldViewModel;
         private readonly OptionViewModel _optionViewModel;
         private readonly IWindowManager _windowManager;
         private readonly Playfield _playfield;
 
         public ShellViewModel(IWindowManager windowManager, PlayfieldViewModel playfieldViewModel, OptionViewModel optionViewModel, Playfield playfield)
         {
-            _playfieldView = playfieldViewModel;
+            _playfieldViewModel = playfieldViewModel;
             _optionViewModel = optionViewModel;
             _windowManager = windowManager;
             _playfield = playfield;
@@ -38,16 +38,16 @@ namespace Battleship_SolitaireUI.ViewModels
             }
         }
 
-        public PlayfieldViewModel PlayfieldView
+        public PlayfieldViewModel PlayfieldViewModel
         {
             get
             {
-                return _playfieldView;
+                return _playfieldViewModel;
             }
             set
             {
-                _playfieldView = value;
-                NotifyOfPropertyChange(() => PlayfieldView);
+                _playfieldViewModel = value;
+                NotifyOfPropertyChange(() => PlayfieldViewModel);
             }
         }
 

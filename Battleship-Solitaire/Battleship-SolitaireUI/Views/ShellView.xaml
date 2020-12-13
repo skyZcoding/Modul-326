@@ -82,6 +82,6 @@
                 </Style>
             </Label.Style>
         </Label>
-        <ContentControl x:Name="PlayfieldView"></ContentControl>
+        <ContentControl x:Name="PlayfieldViewModel"></ContentControl>
     </Grid>
 </mah:MetroWindow>

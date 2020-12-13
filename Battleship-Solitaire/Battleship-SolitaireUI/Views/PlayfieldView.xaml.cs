@@ -27,9 +27,9 @@ namespace Battleship_SolitaireUI.Views
             _playfield = IoC.Get<Playfield>();
         }
 
-        public void Handle(bool isConfigSet)
+        public void Handle(bool isCreated)
         {
-            if (isConfigSet)
+            if (isCreated)
             {
                 ClearGrid();
                 InitialiseGrid();
