@@ -1,6 +1,7 @@
 ﻿using Battleship_SolitaireUI.Enums;
 using Battleship_SolitaireUI.Models.Option;
 using Battleship_SolitaireUI.Models.Playfield;
+using Battleship_SolitaireUI.Models.Ship;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace Battleship_SolitaireUI.Coroutines.GeneratePlayfield
         public void Execute(CoroutineExecutionContext context)
         {
             _playfield.Fields = new List<Field>();
+            _playfield.Ships = new List<Ship>();
 
             int rows = _option.Rows;
             int columns = _option.Columns;
